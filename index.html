@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electronics Quizzes</title>
+    <title>Biglang Ganon eh no?</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -44,6 +44,7 @@
             transition: all 0.2s ease-in-out;
             outline: none;
             text-decoration: none; /* Added for anchor tag */
+            display: inline-block; /* Ensure padding and border work for <a> */
         }
         .tab-button:hover {
             color: #2d3748;
@@ -158,7 +159,7 @@
 </head>
 <body class="flex items-center justify-center min-h-screen">
     <div class="quiz-container">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Electronics Quizzes</h1>
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6 sm:text-4xl">Electronics Quizzes</h1>
 
         <div class="tabs">
             <button id="tab-oscillator" class="tab-button active" onclick="switchTab('oscillator')">Oscillators</button>
@@ -172,18 +173,18 @@
                 <div id="oscillator-progress-bar" class="progress-bar"></div>
             </div>
             <div id="oscillator-question-area">
-                <div id="oscillator-question-text" class="question-text"></div>
+                <div id="oscillator-question-text" class="question-text text-lg sm:text-xl"></div>
                 <div id="oscillator-options-container" class="space-y-4"></div>
-                <div class="flex justify-between mt-8">
-                    <button id="oscillator-prev-button" class="button button-secondary hidden">Previous</button>
-                    <button id="oscillator-next-button" class="button button-primary ml-auto">Next Question</button>
-                    <button id="oscillator-submit-button" class="button button-primary hidden">Submit Quiz</button>
+                <div class="flex justify-between mt-8 flex-wrap">
+                    <button id="oscillator-prev-button" class="button button-secondary hidden px-4 py-2 sm:px-6 sm:py-3 mb-2 sm:mb-0">Previous</button>
+                    <button id="oscillator-next-button" class="button button-primary ml-auto px-4 py-2 sm:px-6 sm:py-3">Check Answer</button>
+                    <button id="oscillator-submit-button" class="button button-primary hidden px-4 py-2 sm:px-6 sm:py-3">Submit Quiz</button>
                 </div>
             </div>
             <div id="oscillator-results-area" class="results-section hidden">
-                <h2>Quiz Complete!</h2>
-                <p>You scored <span id="oscillator-score-display" class="font-bold text-blue-700">0</span> out of <span id="oscillator-total-questions-display" class="font-bold">50</span>.</p>
-                <button id="oscillator-restart-button" class="button button-primary mt-4">Restart Quiz</button>
+                <h2 class="text-2xl sm:text-3xl">Quiz Complete!</h2>
+                <p class="text-base sm:text-lg">You scored <span id="oscillator-score-display" class="font-bold text-blue-700">0</span> out of <span id="oscillator-total-questions-display" class="font-bold">50</span>.</p>
+                <button id="oscillator-restart-button" class="button button-primary mt-4 px-4 py-2 sm:px-6 sm:py-3">Restart Quiz</button>
             </div>
         </div>
 
@@ -193,18 +194,18 @@
                 <div id="activeFilters-progress-bar" class="progress-bar"></div>
             </div>
             <div id="activeFilters-question-area">
-                <div id="activeFilters-question-text" class="question-text"></div>
+                <div id="activeFilters-question-text" class="question-text text-lg sm:text-xl"></div>
                 <div id="activeFilters-options-container" class="space-y-4"></div>
-                <div class="flex justify-between mt-8">
-                    <button id="activeFilters-prev-button" class="button button-secondary hidden">Previous</button>
-                    <button id="activeFilters-next-button" class="button button-primary ml-auto">Next Question</button>
-                    <button id="activeFilters-submit-button" class="button button-primary hidden">Submit Quiz</button>
+                <div class="flex justify-between mt-8 flex-wrap">
+                    <button id="activeFilters-prev-button" class="button button-secondary hidden px-4 py-2 sm:px-6 sm:py-3 mb-2 sm:mb-0">Previous</button>
+                    <button id="activeFilters-next-button" class="button button-primary ml-auto px-4 py-2 sm:px-6 sm:py-3">Check Answer</button>
+                    <button id="activeFilters-submit-button" class="button button-primary hidden px-4 py-2 sm:px-6 sm:py-3">Submit Quiz</button>
                 </div>
             </div>
             <div id="activeFilters-results-area" class="results-section hidden">
-                <h2>Quiz Complete!</h2>
-                <p>You scored <span id="activeFilters-score-display" class="font-bold text-blue-700">0</span> out of <span id="activeFilters-total-questions-display" class="font-bold">50</span>.</p>
-                <button id="activeFilters-restart-button" class="button button-primary mt-4">Restart Quiz</button>
+                <h2 class="text-2xl sm:text-3xl">Quiz Complete!</h2>
+                <p class="text-base sm:text-lg">You scored <span id="activeFilters-score-display" class="font-bold text-blue-700">0</span> out of <span id="activeFilters-total-questions-display" class="font-bold">50</span>.</p>
+                <button id="activeFilters-restart-button" class="button button-primary mt-4 px-4 py-2 sm:px-6 sm:py-3">Restart Quiz</button>
             </div>
         </div>
     </div>
@@ -291,8 +292,7 @@
                     {
                         question: "According to the Barkhausen Criterion, besides loop gain, what is the other crucial condition for sustained oscillations?",
                         options: ["The total phase shift around the loop must be 90°", "The total phase shift around the loop must be 180°", "The total phase shift around the loop must be 0° or a multiple of 360°", "The total phase shift around the loop must be 270°"],
-                        answer: "The total phase shift around the loop must be 0° or a multiple of 360°",
-                        explanation: "The Barkhausen Criterion specifies two conditions for sustained oscillation: loop gain equal to or greater than one, and a total phase shift of 0° or 360°."
+                        answer: "The total phase shift around the loop must be 0° or a multiple of 360°."
                     },
                     {
                         question: "If the loop gain (Aβ) in a feedback circuit is exactly 1, what happens to the overall gain with feedback (Af)?",
@@ -524,7 +524,8 @@
                     }
                 ],
                 currentQuestionIndex: 0,
-                userAnswers: []
+                userAnswers: [],
+                isExplanationVisible: false // New flag for each quiz to track explanation visibility
             },
             {
                 id: 'activeFilters',
@@ -832,16 +833,18 @@
                     }
                 ],
                 currentQuestionIndex: 0,
-                userAnswers: []
+                userAnswers: [],
+                isExplanationVisible: false // New flag for each quiz to track explanation visibility
             }
         ];
 
         let activeQuizId = 'oscillator'; // Default active quiz
         let currentQuizData; // Reference to the active quiz object
 
-        // Initialize userAnswers arrays for each quiz
+        // Initialize userAnswers arrays and flags for each quiz
         quizzes.forEach(quiz => {
             quiz.userAnswers = new Array(quiz.questions.length).fill(null);
+            quiz.isExplanationVisible = false; // Initialize the flag for each quiz
         });
 
         // Get references to all common DOM elements for easier access
@@ -862,6 +865,17 @@
         }
 
         /**
+         * Removes any currently displayed explanation box.
+         */
+        function removeExplanationBox() {
+            const elements = getQuizElements(activeQuizId);
+            const existingExplanation = elements.optionsContainer.querySelector('.explanation-box');
+            if (existingExplanation) {
+                existingExplanation.remove();
+            }
+        }
+
+        /**
          * Loads the current question and its options for the active quiz.
          * Clears previous options and selected state.
          * Shows/hides navigation buttons based on current question index.
@@ -869,6 +883,10 @@
         function loadQuestion() {
             currentQuizData = quizzes.find(quiz => quiz.id === activeQuizId);
             const elements = getQuizElements(activeQuizId);
+
+            // Reset explanation visibility flag for the new question
+            currentQuizData.isExplanationVisible = false;
+            removeExplanationBox(); // Ensure no old explanation is lingering
 
             // Update progress bar
             const progress = (currentQuizData.currentQuestionIndex / currentQuizData.questions.length) * 100;
@@ -910,10 +928,13 @@
                 elements.optionsContainer.appendChild(label);
             });
 
+            // Set button text to "Check Answer" for a fresh question
+            elements.nextButton.textContent = 'Check Answer';
+
             // Handle button visibility
             elements.prevButton.classList.toggle('hidden', currentQuizData.currentQuestionIndex === 0);
-            elements.nextButton.classList.toggle('hidden', currentQuizData.currentQuestionIndex === currentQuizData.questions.length - 1);
-            elements.submitButton.classList.toggle('hidden', currentQuizData.currentQuestionIndex !== currentQuizData.questions.length - 1);
+            elements.nextButton.classList.toggle('hidden', currentQuizData.currentQuestionIndex === currentQuizData.questions.length - 1 && currentQuizData.isExplanationVisible); // Hide if it's the last question and explanation is visible (meaning next click would submit)
+            elements.submitButton.classList.toggle('hidden', currentQuizData.currentQuestionIndex !== currentQuizData.questions.length - 1 || !currentQuizData.isExplanationVisible); // Only show submit if last question AND explanation is visible
         }
 
         /**
@@ -948,11 +969,7 @@
             const selectedOption = quizData.userAnswers[quizData.currentQuestionIndex];
             const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
-            // Remove any existing explanation box
-            const existingExplanation = elements.optionsContainer.querySelector('.explanation-box');
-            if (existingExplanation) {
-                existingExplanation.remove();
-            }
+            removeExplanationBox(); // Remove any existing explanation box before adding a new one
 
             const explanationBox = document.createElement('div');
             explanationBox.className = 'explanation-box';
@@ -975,20 +992,37 @@
         }
 
         /**
-         * Navigates to the next question or submits the quiz.
+         * Handles the click on the 'Next Question' button,
+         * which now toggles between checking the answer/showing explanation and advancing to the next question.
          */
         function handleNextClick() {
-            checkAnswerAndShowExplanation();
+            const quizData = quizzes.find(quiz => quiz.id === activeQuizId);
+            const elements = getQuizElements(activeQuizId);
+            const selectedOption = quizData.userAnswers[quizData.currentQuestionIndex];
 
-            setTimeout(() => {
-                const quizData = quizzes.find(quiz => quiz.id === activeQuizId);
+            // If explanation is NOT currently visible for this question
+            if (!quizData.isExplanationVisible) {
+                if (selectedOption === null) {
+                    console.log("Please select an answer first."); // Console log for debugging, could be a user-facing message
+                    // Optional: Display a temporary alert or message to the user
+                    return; // Prevent action if no answer is selected
+                }
+                checkAnswerAndShowExplanation();
+                quizData.isExplanationVisible = true; // Mark explanation as visible
+                elements.nextButton.textContent = 'Next Question'; // Change button text
+                if (quizData.currentQuestionIndex === quizData.questions.length - 1) {
+                    elements.submitButton.classList.remove('hidden'); // Show submit button if it's the last question and explanation is now visible
+                    elements.nextButton.classList.add('hidden'); // Hide next button if submit is active
+                }
+            } else { // Explanation IS currently visible, time to advance
+                quizData.isExplanationVisible = false; // Reset for the next question
                 if (quizData.currentQuestionIndex < quizData.questions.length - 1) {
                     quizData.currentQuestionIndex++;
-                    loadQuestion();
+                    loadQuestion(); // Load next question
                 } else {
-                    handleSubmitQuiz();
+                    handleSubmitQuiz(); // Submit quiz if it's the last question
                 }
-            }, 1500); // 1.5 second delay
+            }
         }
 
         /**
@@ -998,7 +1032,21 @@
             const quizData = quizzes.find(quiz => quiz.id === activeQuizId);
             if (quizData.currentQuestionIndex > 0) {
                 quizData.currentQuestionIndex--;
+                // When going back, if the question was previously answered, keep the answer selected
+                // but hide the explanation and set button to 'Check Answer' for re-evaluation.
+                quizData.isExplanationVisible = false; // Reset explanation visibility
                 loadQuestion();
+                // If a previous answer exists, re-select it
+                const selectedAnswer = quizData.userAnswers[quizData.currentQuestionIndex];
+                if (selectedAnswer !== null) {
+                    const options = document.querySelectorAll(`#${activeQuizId}-options-container input[type="radio"]`);
+                    options.forEach(option => {
+                        if (option.value === selectedAnswer) {
+                            option.checked = true;
+                            option.parentElement.classList.add('selected');
+                        }
+                    });
+                }
             }
         }
 
@@ -1034,6 +1082,7 @@
             quizData.currentQuestionIndex = 0;
             quizData.score = 0;
             quizData.userAnswers.fill(null); // Reset all answers
+            quizData.isExplanationVisible = false; // Reset explanation flag
             elements.resultsArea.classList.add('hidden');
             elements.questionArea.classList.remove('hidden');
             loadQuestion();
@@ -1057,8 +1106,8 @@
                 targetContent.style.display = 'block';
             }
 
-            // Deactivate all tab buttons
-            document.querySelectorAll('.tab-button').forEach(button => {
+            // Deactivate all tab buttons (excluding the formulas link)
+            document.querySelectorAll('.tabs .tab-button').forEach(button => {
                 button.classList.remove('active');
             });
             // Activate the clicked tab button
@@ -1083,14 +1132,7 @@
 
         // Initial call to ensure the correct tab is displayed on load
         document.addEventListener('DOMContentLoaded', () => {
-            // Check the current URL to decide which tab to activate if coming from formulas.html
-            if (window.location.hash === '#formulas') {
-                // This might not be necessary if formulas.html is a separate file entirely.
-                // The main page should always start on a quiz tab.
-                switchTab('oscillator');
-            } else {
-                switchTab('oscillator'); // Default to Oscillator quiz on initial load
-            }
+            switchTab('oscillator'); // Default to Oscillator quiz on initial load
         });
     </script>
 </body>
