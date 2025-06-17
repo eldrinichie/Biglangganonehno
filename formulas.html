@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compiled Formulas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles for body and container */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e8f0f7; /* Slightly darker light blue-gray background for more depth */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top */
+            min-height: 100vh;
+            padding: 2rem; /* Padding around the container */
+            color: #333; /* Default text color */
+        }
+        .formulas-container {
+            max-width: 90%;
+            margin: 0 auto; /* Center content horizontally */
+            background-color: #ffffff;
+            padding: 3rem; /* Increased padding */
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow for pop */
+            line-height: 1.8;
+        }
+        @media (min-width: 768px) {
+            .formulas-container {
+                max-width: 900px; /* Wider for better readability of formulas */
+                padding: 4rem; /* More generous padding on larger screens */
+            }
+        }
+
+        /* Heading styles */
+        h2 {
+            font-size: 2.5rem; /* Larger main title */
+            font-weight: 800; /* Extra bold */
+            margin-bottom: 2rem;
+            color: #2c5282; /* Darker blue heading */
+            text-align: center;
+            letter-spacing: -0.025em; /* Slightly tighter letter spacing */
+        }
+        h3 {
+            font-size: 1.75rem; /* Larger subheadings */
+            font-weight: 700;
+            margin-top: 3rem; /* More space above section headings */
+            margin-bottom: 1.5rem;
+            color: #4a5568; /* Slightly muted sub-heading color */
+            border-bottom: 2px solid #e2e8f0; /* Thicker border for separation */
+            padding-bottom: 0.75rem;
+            text-align: left;
+        }
+
+        /* List and paragraph styles */
+        ul {
+            list-style: none; /* Remove default list style */
+            padding: 0;
+            margin-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 1.5rem; /* More space between list items */
+            padding-left: 1.5rem; /* Indent content */
+            position: relative; /* For custom bullet */
+        }
+        li::before {
+            content: '•'; /* Custom bullet point */
+            color: #4299e1; /* Blue bullet */
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: 0.1em;
+        }
+        strong {
+            color: #1a202c; /* Darker strong text */
+        }
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Formula code block styling */
+        code {
+            background-color: #f0f7ff; /* Very light blue background */
+            border: 1px solid #cceeff; /* Light blue border */
+            padding: 0.8em 1.2em; /* More padding around code */
+            border-radius: 0.75em; /* Rounded corners for code blocks */
+            font-family: 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 1em; /* Slightly larger font for formulas */
+            color: #2b6cb0; /* Darker blue for formula text */
+            display: block; /* Make it a block element for better layout */
+            margin-top: 0.8rem;
+            margin-bottom: 0.8rem;
+            white-space: pre-wrap; /* Allow long formulas to wrap */
+            word-break: break-all; /* Break words if too long */
+        }
+
+        /* Horizontal rule (separator) */
+        hr {
+            border: 0;
+            height: 2px; /* Thicker HR */
+            background-image: linear-gradient(to right, rgba(66, 153, 225, 0), rgba(66, 153, 225, 0.75), rgba(66, 153, 225, 0)); /* Blue gradient */
+            margin: 3rem 0; /* More vertical space */
+        }
+
+        /* Back button styling */
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 2.5rem auto 0 auto; /* More margin */
+            padding: 1rem 2.2rem; /* Larger button */
+            border-radius: 0.75rem;
+            font-weight: 700; /* Bolder text */
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 6px 12px rgba(66, 153, 225, 0.3); /* Blue shadow */
+            background-color: #4299e1; /* Blue */
+            color: #ffffff;
+            text-decoration: none; /* Remove underline for link */
+            text-align: center;
+        }
+        .back-button:hover {
+            background-color: #3182ce; /* Darker blue */
+            box-shadow: 0 8px 16px rgba(66, 153, 225, 0.4); /* Stronger shadow on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="formulas-container">
+        <h2>Compiled Formulas: Oscillators and Active Filters</h2>
+        <p>This document compiles and explains the key formulas presented in your "Oscillation Operation (1).pdf" and "ACTIVE FILTERS GROUP 4_compressed (1).pdf" files. Understanding these formulas is crucial for designing and analyzing electronic circuits.</p>
+        <hr>
+        <h3>From "Oscillation Operation (1).pdf" (Oscillator Operations)</h3>
+        <ol>
+            <li>
+                <strong>Barkhausen Criterion (Loop Gain)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>|Aβ| &ge; 1</code></li>
+                    <li><strong>Explanation:</strong> This fundamental criterion states that for a circuit to sustain oscillations, the magnitude of the loop gain (the product of the amplifier's gain 'A' and the feedback network's gain 'β') must be equal to or greater than 1. This ensures that the signal is sufficiently amplified to overcome any losses in the circuit and maintain continuous oscillation.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Barkhausen Criterion (Phase Shift)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> Total phase shift around the loop = <code>0&deg;</code> or a multiple of <code>360&deg;</code></li>
+                    <li><strong>Explanation:</strong> The second part of the Barkhausen Criterion, this ensures that the feedback signal arrives at the amplifier's input in phase with the original input signal. This positive feedback is essential for the oscillation to reinforce itself and grow to a steady state.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Overall Gain with Feedback (<code>A_f</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>A_f = A / (1 - Aβ)</code></li>
+                    <li><strong>Explanation:</strong> This formula describes the total gain of an amplifier system when feedback is applied. In the context of oscillators, when the loop gain (<code>Aβ</code>) approaches 1, the denominator becomes zero, causing the overall gain (<code>A_f</code>) to theoretically become infinite. This "infinite gain" condition signifies that the circuit can produce an output even without an external input, which is the essence of oscillation.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Wien Bridge Oscillator: Oscillation Frequency (<code>f</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>f = 1 / (2π RC)</code> (For <code>R1=R2=R</code> and <code>C1=C2=C</code>)</li>
+                    <li><strong>Explanation:</strong> This formula calculates the exact frequency at which a Wien Bridge Oscillator will produce a sinusoidal output, assuming the two resistor-capacitor (RC) sections in its frequency-selective feedback network have identical R and C values. This oscillator is widely used in audio frequency generators due to its stable sinusoidal output.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Colpitts Oscillator: Equivalent Capacitance (<code>C_eq</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>C_eq = (C1 × C2) / (C1 + C2)</code></li>
+                    <li><strong>Explanation:</strong> The Colpitts oscillator uses a tank circuit consisting of an inductor and two capacitors connected in series, where this formula calculates their combined equivalent capacitance. This equivalent capacitance, along with the inductor, determines the oscillator's resonant frequency, making it suitable for high-frequency applications like RF communication.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Hartley Oscillator: Oscillation Frequency (<code>f</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>f = 1 / (2π√(L1+L2)C)</code> (For two separate inductors <code>L1, L2</code> and one capacitor <code>C</code>)</li>
+                    <li><strong>Explanation:</strong> This formula calculates the oscillation frequency of a Hartley oscillator. It shows how the total inductance (the sum of the two series-connected inductors <code>L1</code> and <code>L2</code>, or a single tapped inductor) and the capacitor <code>C</code> in its tank circuit determine its resonant frequency. Hartley oscillators are often used for radio frequency (RF) applications.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>UJT Oscillator: Oscillation Frequency (<code>f</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> The PDF refers to <code>RT</code> and <code>CT</code> determining frequency but does not provide an explicit formula.</li>
+                    <li><strong>Explanation:</strong> While a precise mathematical formula is not provided in the document, it states that the Unijunction Transistor (UJT) oscillator's frequency is primarily controlled by the timing resistor (<code>RT</code>) and capacitor (<code>CT</code>). The frequency is inversely proportional to the <code>RT CT</code> time constant, meaning larger values lead to slower oscillations. This type of relaxation oscillator is commonly used for sawtooth waveform generation and timing circuits.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <hr>
+
+        <h3>From "ACTIVE FILTERS GROUP 4_compressed (1).pdf" (Active Filters)</h3>
+        <ol start="1">
+            <li>
+                <strong>Bandwidth (BW) for Band-Pass and Band-Stop Filters</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>BW = fc2 - fc1</code></li>
+                    <li><strong>Explanation:</strong> This formula quantifies the "width" of the frequency band that a band-pass filter allows to pass or a band-stop filter rejects. <code>fc2</code> is the upper cutoff frequency, and <code>fc1</code> is the lower cutoff frequency. Understanding bandwidth is critical for designing filters that isolate specific signal ranges, like in audio equalizers or radio receivers.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Damping Factor (DF) of an Active Filter</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>DF = 2 - Rf / Rg</code></li>
+                    <li><strong>Explanation:</strong> The damping factor is a dimensionless parameter that dictates the shape of an active filter's frequency response, determining if it will be a Butterworth (maximally flat), Chebyshev (with ripples but steeper roll-off), or Bessel (linear phase) characteristic. It's set by the ratio of feedback resistors (<code>Rf</code> and <code>Rg</code>) in the op-amp circuit.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Roll-off Rate (Cascaded Filters)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> Roll-off = <code>-20n dB/decade</code>, where <code>n</code> = total filter order</li>
+                    <li><strong>Explanation:</strong> This formula describes how sharply a filter attenuates signals outside its passband. Each "pole" (typically one RC section) in a filter contributes -20 dB/decade to the roll-off. By cascading 'n' filter stages, the roll-off becomes 'n' times steeper, allowing for more precise frequency separation in applications like anti-aliasing filters.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>First-Order Active Low-Pass Filter: Cutoff Frequency (<code>fOH</code> or <code>fc</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>fOH = 1 / (2π R C)</code></li>
+                    <li><strong>Explanation:</strong> This formula calculates the cutoff frequency for a basic first-order active low-pass filter. At this frequency, the signal power is reduced by half (the -3dB point). This filter is used to block high-frequency noise while allowing lower frequencies, for instance, in smoothing DC power supplies or in audio pre-amplifiers.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>First-Order Active Low-Pass Filter: Voltage Gain (<code>Av</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</b> <code>Av = 1 + Rf / Rg</code></li>
+                    <li><strong>Explanation:</strong> This formula determines the constant gain of the first-order low-pass filter within its passband. Since active filters use op-amps, they can provide amplification, unlike passive filters. This gain is set by the ratio of the feedback resistor (<code>Rf</code>) to the gain-setting resistor (<code>Rg</code>) in the op-amp's non-inverting configuration.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Second-Order Active Low-Pass Filter: Cutoff Frequency (<code>fOH</code> or <code>fc</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>fOH = 1 / (2π√(R1 R2 C1 C2))</code> (for Sallen-Key, assuming R1=R2 and C1=C2 for simplified cases)</li>
+                    <li><strong>Explanation:</strong> This formula calculates the cutoff frequency for a second-order low-pass filter, which offers a steeper roll-off than a first-order filter. While the general form depends on specific component values and topology (like Sallen-Key), it's often simplified for matched components. These are used when a sharper cutoff is needed, such as in anti-aliasing filters before analog-to-digital conversion.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Second-Order Active Low-Pass Filter: Voltage Gain (<code>Av</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>Av = 1 + Rf / Rg</code></li>
+                    <li><strong>Explanation:</strong> Similar to the first-order filter, this formula defines the passband voltage gain for a second-order active low-pass filter. This gain applies to all frequencies within its passband and is controlled by the external resistors connected to the op-amp.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>First-Order Active High-Pass Filter: Cutoff Frequency (<code>fOL</code> or <code>fc</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>fOL = 1 / (2π R1 C1)</code></li>
+                    <li><strong>Explanation:</strong> This formula determines the cutoff frequency for a first-order active high-pass filter. This type of filter blocks low-frequency signals and allows high-frequency signals to pass. Common applications include blocking DC components in audio signals or in speaker crossover networks for tweeters.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>First-Order Active High-Pass Filter: Voltage Gain (<code>Av</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>Av = 1 + Rf / Rg</code></li>
+                    <li><strong>Explanation:</strong> This formula calculates the constant gain of the first-order high-pass filter within its passband, provided by the op-amp. It allows the filtered high-frequency signals to be amplified as needed.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Second-Order Active High-Pass Filter: Cutoff Frequency (<code>fOL</code> or <code>fc</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>fOL = 1 / (2π√(R1 R2 C1 C2))</code></li>
+                    <li><strong>Explanation:</strong> This formula calculates the cutoff frequency for a second-order active high-pass filter. It offers a sharper attenuation of low frequencies compared to a first-order design, making it useful in applications requiring a cleaner separation of low and high frequencies, like noise reduction in sensor signals.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Second-Order Active High-Pass Filter: Voltage Gain (<code>Av</code>)</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>Av = 1 + Rf / Rg</code></li>
+                    <li><strong>Explanation:</strong> This formula determines the passband voltage gain for a second-order active high-pass filter, set by the external resistors in the op-amp's feedback loop.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Quality Factor (Q) for Band-Pass Filters</strong>
+                <ul>
+                    <li><strong>Formula:</strong> <code>Q = f0 / BW</code></li>
+                    <li><strong>Explanation:</strong> The Quality Factor (Q) is a measure of a band-pass filter's selectivity. A high Q value means the filter has a narrow bandwidth (<code>BW</code>) relative to its center frequency (<code>f0</code>), making it very selective. This is important in applications like radio tuning, where only a very specific frequency band needs to be isolated.</li>
+                </ul>
+            </li>
+        </ol>
+        <a href="index.html" class="back-button">Back to Quizzes</a>
+    </div>
+</body>
+</html>
