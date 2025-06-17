@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics Quizzes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+        }
+        .quiz-container {
+            max-width: 90%;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        @media (min-width: 768px) {
+            .quiz-container {
+                max-width: 800px; /* Slightly wider for tabs */
+                padding: 3rem;
+            }
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4a5568;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            outline: none;
+            text-decoration: none; /* Added for anchor tag */
+        }
+        .tab-button:hover {
+            color: #2d3748;
+            border-color: #a0aec0;
+        }
+        .tab-button.active {
+            color: #4299e1;
+            border-color: #4299e1;
+        }
+        .question-text {
+            font-size: 1.25rem; /* Larger font for questions */
+            font-weight: 600;
+            color: #1a202c; /* Darker text */
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.75rem;
+            background-color: #f7fafc; /* Lighter option background */
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem; /* Rounded corners for options */
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .option-label:hover {
+            background-color: #ebf4ff; /* Lighter blue on hover */
+            border-color: #a7d3ff;
+        }
+        .option-label input[type="radio"] {
+            margin-right: 1rem;
+            accent-color: #4299e1; /* Blue accent for radio buttons */
+        }
+        .option-label.selected {
+            background-color: #e0f2fe; /* Selected option background */
+            border-color: #3182ce;
+            box-shadow: 0 2px 5px rgba(66, 153, 225, 0.2);
+        }
+        .button {
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button-primary {
+            background-color: #4299e1; /* Blue */
+            color: #ffffff;
+        }
+        .button-primary:hover {
+            background-color: #3182ce; /* Darker blue */
+        }
+        .button-secondary {
+            background-color: #cbd5e0; /* Gray */
+            color: #2d3748;
+        }
+        .button-secondary:hover {
+            background-color: #a0aec0; /* Darker gray */
+        }
+        .explanation-box {
+            background-color: #e6fffa; /* Light teal */
+            border-left: 5px solid #38b2ac; /* Dark teal border */
+            padding: 1rem 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+            color: #2d3748;
+        }
+        .explanation-box p {
+            margin-bottom: 0.5rem;
+        }
+        .explanation-box strong {
+            color: #2d3748;
+        }
+        .results-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: #f0f8ff; /* Very light blue */
+            border-radius: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .results-section h2 {
+            font-size: 2rem;
+            color: #2c5282; /* Darker blue heading */
+            margin-bottom: 1rem;
+        }
+        .results-section p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 0.5rem;
+            height: 0.75rem; /* Thicker progress bar */
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #4299e1;
+            border-radius: 0.5rem;
+            transition: width 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="quiz-container">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Electronics Quizzes</h1>
+
+        <div class="tabs">
+            <button id="tab-oscillator" class="tab-button active" onclick="switchTab('oscillator')">Oscillators</button>
+            <button id="tab-activeFilters" class="tab-button" onclick="switchTab('activeFilters')">Active Filters</button>
+            <a href="formulas.html" id="tab-formulas" class="tab-button">Formulas</a>
+        </div>
+
+        <!-- Oscillator Operations Quiz Content -->
+        <div id="oscillator-quiz-content" class="quiz-content">
+            <div id="oscillator-progress" class="progress-bar-container">
+                <div id="oscillator-progress-bar" class="progress-bar"></div>
+            </div>
+            <div id="oscillator-question-area">
+                <div id="oscillator-question-text" class="question-text"></div>
+                <div id="oscillator-options-container" class="space-y-4"></div>
+                <div class="flex justify-between mt-8">
+                    <button id="oscillator-prev-button" class="button button-secondary hidden">Previous</button>
+                    <button id="oscillator-next-button" class="button button-primary ml-auto">Next Question</button>
+                    <button id="oscillator-submit-button" class="button button-primary hidden">Submit Quiz</button>
+                </div>
+            </div>
+            <div id="oscillator-results-area" class="results-section hidden">
+                <h2>Quiz Complete!</h2>
+                <p>You scored <span id="oscillator-score-display" class="font-bold text-blue-700">0</span> out of <span id="oscillator-total-questions-display" class="font-bold">50</span>.</p>
+                <button id="oscillator-restart-button" class="button button-primary mt-4">Restart Quiz</button>
+            </div>
+        </div>
+
+        <!-- Active Filters Quiz Content -->
+        <div id="activeFilters-quiz-content" class="quiz-content hidden">
+            <div id="activeFilters-progress" class="progress-bar-container">
+                <div id="activeFilters-progress-bar" class="progress-bar"></div>
+            </div>
+            <div id="activeFilters-question-area">
+                <div id="activeFilters-question-text" class="question-text"></div>
+                <div id="activeFilters-options-container" class="space-y-4"></div>
+                <div class="flex justify-between mt-8">
+                    <button id="activeFilters-prev-button" class="button button-secondary hidden">Previous</button>
+                    <button id="activeFilters-next-button" class="button button-primary ml-auto">Next Question</button>
+                    <button id="activeFilters-submit-button" class="button button-primary hidden">Submit Quiz</button>
+                </div>
+            </div>
+            <div id="activeFilters-results-area" class="results-section hidden">
+                <h2>Quiz Complete!</h2>
+                <p>You scored <span id="activeFilters-score-display" class="font-bold text-blue-700">0</span> out of <span id="activeFilters-total-questions-display" class="font-bold">50</span>.</p>
+                <button id="activeFilters-restart-button" class="button button-primary mt-4">Restart Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data Structure
+        const quizzes = [
+            {
+                id: 'oscillator',
+                title: 'Oscillator Operations Quiz',
+                questions: [
+                    {
+                        question: "What is the condition required for self-sustained oscillation in a feedback amplifier?",
+                        options: ["Aβ = 10", "Aβ < 1", "Aβ = 0", "Aβ = 1"],
+                        answer: "Aβ = 1",
+                        explanation: "For sustained oscillations, the Barkhausen Criterion states that the loop gain (Aβ) must be equal to or greater than 1, and the total phase shift around the loop must be 0° or a multiple of 360°."
+                    },
+                    {
+                        question: "What is the minimum phase shift required from the phase-shift network for oscillation to occur in an inverting amplifier configuration?",
+                        options: ["90 degrees", "180 degrees", "270 degrees", "360 degrees"],
+                        answer: "180 degrees",
+                        explanation: "A phase-shift oscillator uses a feedback network that provides a 180-degree phase shift. This combined with the 180-degree phase inversion of the inverting amplifier results in a total phase shift of 360 degrees, fulfilling the condition for sustained oscillations."
+                    },
+                    {
+                        question: "A phase-shift oscillator typically uses how many RC sections in its phase-shift network?",
+                        options: ["One", "Two", "Three", "Four"],
+                        answer: "Three",
+                        explanation: "Phase-shift oscillators commonly employ three identical RC (resistor-capacitor) stages in their feedback network to achieve the necessary 180-degree phase shift."
+                    },
+                    {
+                        question: "What property of a quartz crystal is described by the piezoelectric effect?",
+                        options: ["Generating heat when voltage is applied", "Developing a potential difference under mechanical stress", "Changing resistance with frequency", "Emitting light under pressure"],
+                        answer: "Developing a potential difference under mechanical stress",
+                        explanation: "The piezoelectric effect is the property of certain crystals, like quartz, to generate an electrical potential when mechanical stress is applied, and vice-versa."
+                    },
+                    {
+                        question: "In a series-resonant circuit containing a resistor, inductor, and capacitor, what happens at the resonant frequency?",
+                        options: ["The impedance of the circuit is maximum", "The current in the circuit is minimum", "The voltage across the inductor and capacitor are equal in magnitude but opposite in phase", "The circuit behaves like a low-pass filter"],
+                        answer: "The voltage across the inductor and capacitor are equal in magnitude but opposite in phase",
+                        explanation: "At series resonance, the inductive and capacitive reactances cancel each other out, leading to a very low impedance equal to the resistance (R)."
+                    },
+                    {
+                        question: "In a parallel-resonant circuit, what happens to the total impedance at the resonant frequency?",
+                        options: ["It becomes zero", "It becomes purely capacitive", "It reaches a maximum value", "It equals the inductive reactance"],
+                        answer: "It reaches a maximum value",
+                        explanation: "At parallel resonance (or antiresonance), the crystal offers a very high impedance to the external circuit, making it suitable for rejecting specific frequencies or stabilizing voltage."
+                    },
+                    {
+                        question: "At low frequencies in a Wien Bridge Oscillator, what is the impedance characteristic?",
+                        options: ["The series RC is low and the parallel RC is high", "The series and parallel RC network are both low", "The series and parallel RC network are both high", "The series RC is high and the parallel RC is low"],
+                        answer: "The series RC is high and the parallel RC is low",
+                        explanation: "The Wien Bridge Oscillator uses a series R1C1 (high-pass filter) and a parallel R2C2 (low-pass filter) circuit. At low frequencies, the series RC (high-pass) has high impedance, and the parallel RC (low-pass) has low impedance."
+                    },
+                    {
+                        question: "The provided image shows a circuit diagram with a transistor and a feedback network containing two inductors and one capacitor. What type of oscillator is this?",
+                        options: ["Transistor Hartley Oscillator", "FET Hartley Oscillator", "Op-amp Colpitts Oscillator", "Basic Configuration of resonant Oscillator"],
+                        answer: "Transistor Hartley Oscillator",
+                        explanation: "A Hartley oscillator is characterized by a tank circuit consisting of two inductors (or a tapped inductor) and one capacitor, which determines its operating frequency. The image clearly shows a transistor as the active element."
+                    },
+                    {
+                        question: "In a UJT oscillator, what is the role of the timing resistor RT and capacitor CT?",
+                        options: ["They regulate the UJT gain", "They determine the frequency of oscillation", "They increase the output voltage", "They filter noise from the waveform"],
+                        answer: "They determine the frequency of oscillation",
+                        explanation: "The resistor RT and capacitor CT are the primary timing components in a UJT relaxation oscillator, controlling the charging and discharging cycle and thus setting the oscillation rate."
+                    },
+                    {
+                        question: "What does the Peak Point Voltage (VP) in a UJT oscillator represent?",
+                        options: ["The maximum voltage the UJT can handle", "The voltage across the capacitor when it is fully discharged", "The voltage at which the UJT turns ON and starts conducting", "The voltage across base B1 and B2 when the circuit is idle"],
+                        answer: "The voltage at which the UJT turns ON and starts conducting",
+                        explanation: "In a UJT oscillator, the capacitor charges until its voltage reaches the peak point voltage (VP), at which point the UJT turns ON and rapidly discharges the capacitor."
+                    },
+                    {
+                        question: "What is the fundamental principle that allows oscillators to generate an output signal without external input?",
+                        options: ["Negative feedback", "Positive feedback", "Zero feedback", "Voltage division"],
+                        answer: "Positive feedback",
+                        explanation: "Oscillators utilize positive feedback, which amplifies a small initial noise signal repeatedly until it reaches a steady-state oscillation."
+                    },
+                    {
+                        question: "What types of waveforms can an oscillator typically produce?",
+                        options: ["Only sinusoidal waves", "Only pulse/square waves", "Sinusoidal and pulse/square waves", "Triangular waves only"],
+                        answer: "Sinusoidal and pulse/square waves",
+                        explanation: "Oscillators are capable of generating various types of continuous output signals, including smooth sinusoidal waves and abrupt pulse/square waves."
+                    },
+                    {
+                        question: "According to the Barkhausen Criterion, besides loop gain, what is the other crucial condition for sustained oscillations?",
+                        options: ["The total phase shift around the loop must be 90°", "The total phase shift around the loop must be 180°", "The total phase shift around the loop must be 0° or a multiple of 360°", "The total phase shift around the loop must be 270°"],
+                        answer: "The total phase shift around the loop must be 0° or a multiple of 360°",
+                        explanation: "The Barkhausen Criterion specifies two conditions for sustained oscillation: loop gain equal to or greater than one, and a total phase shift of 0° or 360°."
+                    },
+                    {
+                        question: "If the loop gain (Aβ) in a feedback circuit is exactly 1, what happens to the overall gain with feedback (Af)?",
+                        options: ["It becomes zero", "It becomes infinite", "It becomes less than 1", "It becomes undefined but not infinite"],
+                        answer: "It becomes infinite",
+                        explanation: "The formula for overall gain with feedback is $Af = A / (1 - A\beta)$. If $A\beta = 1$, the denominator becomes 0, making $Af$ theoretically infinite, meaning even a tiny signal can produce a large output."
+                    },
+                    {
+                        question: "What is the primary output waveform generated by a phase-shift oscillator?",
+                        options: ["Square wave", "Triangular wave", "Sinusoidal wave", "Sawtooth wave"],
+                        answer: "Sinusoidal wave",
+                        explanation: "A phase-shift oscillator is an electronic circuit specifically designed to generate a sinusoidal (sine wave) output."
+                    },
+                    {
+                        question: "Which components typically form the feedback network in a phase-shift oscillator?",
+                        options: ["Inductors and capacitors", "Resistors and inductors", "Resistors and capacitors", "Diodes and transistors"],
+                        answer: "Resistors and capacitors",
+                        explanation: "The feedback network of a phase-shift oscillator is typically composed of resistors and capacitors arranged in a ladder configuration to provide the necessary phase shift."
+                    },
+                    {
+                        question: "In a FET Phase-Shift Oscillator, what is the purpose of bypassing the source resistor (RS) with a capacitor?",
+                        options: ["To decrease the gain at the oscillation frequency", "To improve gain at the oscillation frequency", "To block DC signals", "To introduce additional phase shift"],
+                        answer: "To improve gain at the oscillation frequency",
+                        explanation: "A capacitor bypasses the source resistor in a common-source FET amplifier configuration to enhance the gain at the specific oscillation frequency."
+                    },
+                    {
+                        question: "What is a key advantage of using an operational amplifier (op-amp) as the amplifier in an IC Phase-Shift Oscillator?",
+                        options: ["Lower input impedance", "Reduced loading effects on the RC network", "Requires more complex design", "Less stable operation"],
+                        answer: "Reduced loading effects on the RC network",
+                        explanation: "Op-amps are preferred in IC phase-shift oscillators because they offer high input impedance, which minimizes the loading effects on the RC feedback network."
+                    },
+                    {
+                        question: "Who developed the bridge circuit that is the basis for the Wien Bridge Oscillator?",
+                        options: ["Barkhausen", "Max Wien", "Colpitts", "Hartley"],
+                        answer: "Max Wien",
+                        explanation: "The Wien bridge circuit, which is used in the Wien Bridge Oscillator, was developed by Max Wien in 1891 to measure impedances."
+                    },
+                    {
+                        question: "The Wien Bridge Oscillator can also be viewed as a band-pass filter providing positive feedback to what type of amplifier?",
+                        options: ["Negative gain amplifier", "Zero gain amplifier", "Positive gain amplifier", "Unity gain amplifier"],
+                        answer: "Positive gain amplifier",
+                        explanation: "The Wien Bridge Oscillator can be conceptualized as a band-pass filter that provides positive feedback to an amplifier with positive gain."
+                    },
+                    {
+                        question: "In a Wien Bridge Oscillator, what kind of filter is formed by the series R1C1 circuit?",
+                        options: ["Low-pass filter", "Band-pass filter", "High-pass filter", "Band-stop filter"],
+                        answer: "High-pass filter",
+                        explanation: "The Wien Bridge Oscillator's feedback loop includes a series R1C1 circuit, which functions as a high-pass filter."
+                    },
+                    {
+                        question: "What is the equivalent capacitance (Ceq) in a Colpitts oscillator where C1 and C2 are connected in series?",
+                        options: ["C1 + C2", "C1 × C2", "(C1 × C2) / (C1 + C2)", "C1 / C2"],
+                        answer: "(C1 × C2) / (C1 + C2)",
+                        explanation: "In a Colpitts oscillator, the equivalent capacitance (Ceq) for series-connected capacitors C1 and C2 is calculated using the formula for capacitors in series."
+                    },
+                    {
+                        question: "What is a major advantage of using an Op-amp based Colpitts Oscillator compared to a transistor-based one?",
+                        options: ["Lower gain", "Less stability", "Simpler design", "Higher susceptibility to temperature variations"],
+                        answer: "Simpler design",
+                        explanation: "Op-amp-based Colpitts oscillators can sometimes be simpler to implement than their transistor-based counterparts due to the inherent advantages of op-amps. Op-amps also offer higher gain and better stability."
+                    },
+                    {
+                        question: "In a Hartley oscillator, which reactive elements (X1, X2, X3) are typically inductors and which is a capacitor?",
+                        options: ["X1=C, X2=C, X3=L", "X1=L, X2=L, X3=C", "X1=L, X2=C, X3=L", "X1=C, X2=L, X3=C"],
+                        answer: "X1=L, X2=L, X3=C",
+                        explanation: "The table of reactance elements for oscillator types indicates that a Hartley oscillator uses two inductors (L) as X1 and X2, and one capacitor (C) as X3."
+                    },
+                    {
+                        question: "What is one of the disadvantages of a Transistor Hartley Oscillator regarding its frequency?",
+                        options: ["It is always perfectly stable.", "It cannot operate at high frequencies.", "The oscillation frequency can be affected by variations in component values and temperature.", "It requires no external components for frequency determination."],
+                        answer: "The oscillation frequency can be affected by variations in component values and temperature.",
+                        explanation: "A disadvantage of the Transistor Hartley Oscillator is that its oscillation frequency can be susceptible to changes in component values and temperature variations."
+                    },
+                    {
+                        question: "What type of crystal is typically used in a crystal oscillator to produce a highly stable and accurate frequency?",
+                        options: ["Silicon", "Germanium", "Quartz", "Ceramic"],
+                        answer: "Quartz",
+                        explanation: "Crystal oscillators commonly use a piezoelectric crystal, such as quartz, which vibrates at a precise frequency when a voltage is applied, providing excellent stability."
+                    },
+                    {
+                        question: "Why are crystal oscillators commonly used in applications requiring precise timing, such as communication transmitters and GPS systems?",
+                        options: ["Their low cost", "Their large size", "Their excellent frequency stability and resistance to environmental changes", "Their ability to generate various waveforms simultaneously"],
+                        answer: "Their excellent frequency stability and resistance to environmental changes",
+                        explanation: "Crystal oscillators are favored in high-precision timing applications due to their inherent frequency stability and resilience to environmental fluctuations."
+                    },
+                    {
+                        question: "In the electrical equivalent circuit of a quartz crystal, what does the inductor (L) and capacitor (C) represent?",
+                        options: ["Crystal voltage and current", "Crystal power and energy", "Crystal mass and compliance", "Crystal resistance and reactance"],
+                        answer: "Crystal mass and compliance",
+                        explanation: "In the electrical equivalent circuit of a quartz crystal, the inductor L and capacitor C represent the electrical equivalents of the crystal's mechanical mass and compliance, respectively."
+                    },
+                    {
+                        question: "What is the typical quality factor (Q) of an equivalent crystal, and what values can be achieved?",
+                        options: ["Typically 100; up to 1,000", "Typically 1,000; up to 10,000", "Typically 20,000; up to almost 10^6", "Typically 10^6; up to 10^7"],
+                        answer: "Typically 20,000; up to almost 10^6",
+                        explanation: "Due to small internal losses, quartz crystals exhibit a very high quality factor (Q), typically around 20,000, and can achieve values close to 10^6."
+                    },
+                    {
+                        question: "In a series-resonant crystal circuit, how is the crystal typically connected to ensure maximum feedback?",
+                        options: ["In parallel with the amplifier", "In series with the amplifier", "To provide maximum impedance", "In a way that its impedance is minimum at series resonance"],
+                        answer: "In a way that its impedance is minimum at series resonance",
+                        explanation: "In series-resonant circuits, the crystal's impedance is smallest at its series-resonant frequency, which maximizes positive feedback and oscillation."
+                    },
+                    {
+                        question: "In a UJT oscillator, what happens to the capacitor CT when the emitter voltage reaches the peak point voltage (VP)?",
+                        options: ["It starts charging slowly.", "It discharges rapidly.", "It maintains its charge.", "It reverses its polarity."],
+                        answer: "It discharges rapidly.",
+                        explanation: "When the emitter voltage reaches the peak point voltage (VP), the UJT turns ON, causing the capacitor CT to discharge quickly, and then the cycle repeats."
+                    },
+                    {
+                        question: "If the value of the timing resistor RT or capacitor CT in a UJT oscillator is increased, what happens to the oscillation frequency?",
+                        options: ["It increases.", "It decreases.", "It remains the same.", "It becomes unstable."],
+                        answer: "It decreases.",
+                        explanation: "A higher RT or CT value leads to a longer charging time for the capacitor, resulting in a slower charging cycle and thus a lower oscillation frequency."
+                    },
+                    {
+                        question: "What is the primary characteristic of an oscillator as a 'self-sustained' circuit?",
+                        options: ["It requires continuous external input.", "It generates output without external input.", "It can only operate with negative feedback.", "It only produces unstable signals."],
+                        answer: "It generates output without external input.",
+                        explanation: "Oscillators are described as 'self-sustained' because they generate their own output signal without needing a continuous external input."
+                    },
+                    {
+                        question: "What phenomenon is responsible for the initial build-up of steady-state oscillations in an oscillator circuit, even without a specific input signal?",
+                        options: ["External signal injection", "Internal circuit noise", "Power supply fluctuations", "Component aging"],
+                        answer: "Internal circuit noise",
+                        explanation: "Even without an external input, a small amount of internal noise always exists in a circuit. If the loop gain is greater than 1, this noise is amplified repeatedly, leading to the build-up of steady-state oscillations."
+                    },
+                    {
+                        question: "The gain formula for a feedback amplifier is $Af=A/(1-A\beta)$. What does A represent in this formula?",
+                        options: ["Overall gain with feedback", "Feedback factor", "Open-loop gain of the amplifier", "Input voltage"],
+                        answer: "Open-loop gain of the amplifier",
+                        explanation: "In the feedback amplifier gain formula, 'A' represents the open-loop gain of the amplifier stage before feedback is applied."
+                    },
+                    {
+                        question: "In a Phase-Shift Oscillator, the feedback network shifts the phase of the amplifier's output signal by 180 degrees. What is the inherent phase inversion of the inverting amplifier that complements this shift?",
+                        options: ["0 degrees", "90 degrees", "180 degrees", "360 degrees"],
+                        answer: "180 degrees",
+                        explanation: "An inverting amplifier inherently provides a 180-degree phase inversion. This, combined with the 180-degree phase shift from the RC network, ensures the total 360-degree phase shift required for oscillation."
+                    },
+                    {
+                        question: "Which type of phase-shift oscillator uses a common-source FET amplifier configuration?",
+                        options: ["Transistor Phase-Shift Oscillator", "IC Phase-Shift Oscillator", "FET Phase-Shift Oscillator", "Wien Bridge Oscillator"],
+                        answer: "FET Phase-Shift Oscillator",
+                        explanation: "The FET Phase-Shift Oscillator specifically utilizes a common-source FET amplifier configuration as its active element."
+                    },
+                    {
+                        question: "When designing a FET phase-shift oscillator, the amplifier stage gain (A) should be selected to be somewhat larger than what minimum value to assure oscillator action?",
+                        options: ["1", "10", "29", "180"],
+                        answer: "29",
+                        explanation: "For a FET phase-shift oscillator, the amplifier gain (A) needs to be greater than 29 ($A > 29$) to ensure that the Barkhausen criterion for oscillation is met."
+                    },
+                    {
+                        question: "What is a key consideration when using a transistor as the active element in a Transistor Phase-Shift Oscillator, regarding the feedback network?",
+                        options: ["The feedback network is unaffected by the transistor's input resistance.", "The feedback network is loaded appreciably by the transistor's low input resistance.", "The transistor's high input impedance improves the feedback.", "The feedback network requires no loading."],
+                        answer: "The feedback network is loaded appreciably by the transistor's low input resistance.",
+                        explanation: "Unlike op-amps, a transistor's relatively low input resistance ($h_{ie}$) can significantly load the feedback network in a transistor phase-shift oscillator."
+                    },
+                    {
+                        question: "What is a significant advantage of using an Op-Amp based IC Colpitts Oscillator over transistor-based designs?",
+                        options: ["Lower gain.", "Reduced stability.", "Higher susceptibility to temperature changes.", "Simpler design due to higher gain and better stability."],
+                        answer: "Simpler design due to higher gain and better stability.",
+                        explanation: "Op-amps provide higher gain and better stability, which simplifies the design of IC Colpitts oscillators compared to transistor versions."
+                    },
+                    {
+                        question: "What is the main purpose of 'tuned-input, tuned-output' oscillator circuits?",
+                        options: ["To exclusively generate square waves.", "To control the overall oscillation frequency by tuning input and output sections.", "To operate without any feedback.", "To minimize power consumption regardless of frequency."],
+                        answer: "To control the overall oscillation frequency by tuning input and output sections.",
+                        explanation: "Tuned-input, tuned-output oscillator circuits are designed such that their input and output sections are tuned to precisely control the oscillation frequency."
+                    },
+                    {
+                        question: "In a Colpitts oscillator, the feedback network consists of which reactive elements according to the table provided?",
+                        options: ["Two inductors (L) and one capacitor (C)", "Two capacitors (C) and one inductor (L)", "Two resistors (R) and one capacitor (C)", "One inductor (L) and two resistors (R)"],
+                        answer: "Two capacitors (C) and one inductor (L)",
+                        explanation: "The table of reactance elements for oscillator types indicates that a Colpitts oscillator uses two capacitors (C) as X1 and X2, and one inductor (L) as X3."
+                    },
+                    {
+                        question: "Which type of oscillator is characterized by having two inductors and one capacitor in its tank circuit?",
+                        options: ["Colpitts oscillator", "Wien Bridge oscillator", "Hartley oscillator", "Phase-shift oscillator"],
+                        answer: "Hartley oscillator",
+                        explanation: "The Hartley oscillator is distinguished by its tank circuit, which comprises two inductors (or a tapped inductor) and a single capacitor."
+                    },
+                    {
+                        question: "What can affect the actual frequency of a Transistor Hartley Oscillator, even though a formula provides an approximation?",
+                        options: ["Only the resistor values", "Only the capacitor values", "Parasitic capacitances and mutual inductance", "The supply voltage only"],
+                        answer: "Parasitic capacitances and mutual inductance",
+                        explanation: "While a formula gives an approximate frequency, parasitic capacitances and mutual inductance can influence the actual operating frequency of a Transistor Hartley Oscillator."
+                    },
+                    {
+                        question: "The piezoelectric effect in a quartz crystal means that a voltage applied across one set of faces will cause what?",
+                        options: ["A change in its chemical composition", "Mechanical distortion in the crystal shape", "Emission of light", "An increase in its temperature"],
+                        answer: "Mechanical distortion in the crystal shape",
+                        explanation: "The piezoelectric effect is a bidirectional property: applying a voltage across a crystal's faces causes a physical deformation, and conversely, mechanical stress generates a voltage."
+                    },
+                    {
+                        question: "What does the shunt capacitance (CM) represent in the electrical equivalent circuit of a quartz crystal?",
+                        options: ["The capacitance due to internal friction.", "The capacitance due to mechanical mounting of the crystal.", "The capacitance of the lead wires.", "The capacitance of the external circuit."],
+                        answer: "The capacitance due to mechanical mounting of the crystal.",
+                        explanation: "In the equivalent circuit of a quartz crystal, CM specifically represents the capacitance introduced by the mechanical mounting of the crystal."
+                    },
+                    {
+                        question: "In a series-resonant crystal circuit, the series-resonant impedance is very low and approximately equal to what?",
+                        options: ["Inductive reactance", "Capacitive reactance", "Resistance (R)", "Infinite impedance"],
+                        answer: "Resistance (R)",
+                        explanation: "At series resonance, the reactances cancel, and the crystal's impedance becomes very low, equivalent to its internal resistance (R)."
+                    },
+                    {
+                        question: "What is the characteristic of the crystal at its parallel resonance (antiresonance) frequency?",
+                        options: ["It offers a very low impedance to the external circuit.", "It offers a very high impedance to the external circuit.", "It becomes purely resistive.", "It acts as a short circuit."],
+                        answer: "It offers a very high impedance to the external circuit.",
+                        explanation: "At its parallel resonance or antiresonance, the crystal presents a very high impedance to the external circuit."
+                    },
+                    {
+                        question: "Why are series resonance circuits useful for passing signals at a specific frequency and blocking others?",
+                        options: ["They provide high impedance at resonance.", "They provide high current and low impedance at resonance.", "They act as band-stop filters.", "They are ideal for voltage stabilization."],
+                        answer: "They provide high current and low impedance at resonance.",
+                        explanation: "Series resonance circuits are characterized by low impedance and high current at their resonant frequency, allowing them to pass signals at that specific frequency effectively."
+                    },
+                    {
+                        question: "What type of oscillator uses a Unijunction Transistor (UJT) and operates based on the charging and discharging of a capacitor?",
+                        options: ["Hartley Oscillator", "Colpitts Oscillator", "Unijunction Oscillator (UJT relaxation oscillator)", "Wien Bridge Oscillator"],
+                        answer: "Unijunction Oscillator (UJT relaxation oscillator)",
+                        explanation: "The Unijunction Oscillator, specifically a UJT relaxation oscillator, generates periodic signals through the charging and discharging cycle of a capacitor triggered by the UJT's unique switching action."
+                    },
+                    {
+                        question: "What is typically the output waveform of an op-amp crystal oscillator operating in series-resonant mode with high gain?",
+                        options: ["Sinusoidal wave", "Triangular wave", "Sawtooth wave", "Square-wave signal"],
+                        answer: "Square-wave signal",
+                        explanation: "When an op-amp based crystal oscillator operates in series-resonant mode with high gain, it tends to produce a square-wave output signal."
+                    }
+                ],
+                currentQuestionIndex: 0,
+                userAnswers: []
+            },
+            {
+                id: 'activeFilters',
+                title: 'Active Filters Quiz',
+                questions: [
+                    {
+                        question: "What is the primary function of a filter in electronics?",
+                        options: ["To amplify all frequencies", "To generate frequencies", "To pass certain frequencies and attenuate or reject others", "To convert AC signals to DC signals"],
+                        answer: "To pass certain frequencies and attenuate or reject others",
+                        explanation: "A filter selectively allows a desired range of frequencies to pass while reducing the amplitude of unwanted frequencies."
+                    },
+                    {
+                        question: "What is the 'passband' of a filter?",
+                        options: ["The range of frequencies that are completely blocked.", "The range of frequencies that are allowed to pass with minimum attenuation.", "The frequency at which the filter response drops to zero.", "The region between the transition region and the stopband."],
+                        answer: "The range of frequencies that are allowed to pass with minimum attenuation.",
+                        explanation: "The passband is the desired frequency range where the filter has minimal impact on the signal strength, typically defined as less than -3dB attenuation."
+                    },
+                    {
+                        question: "What is another name for the 'critical frequency' of a filter?",
+                        options: ["Bandwidth frequency", "Peak frequency", "Cutoff frequency", "Resonant frequency"],
+                        answer: "Cutoff frequency",
+                        explanation: "The critical frequency, also known as the cutoff frequency ($f_c$), defines the boundary of the passband and is typically specified where the response drops to 70.7% (-3 dB) of its passband response."
+                    },
+                    {
+                        question: "A low-pass filter typically passes frequencies from DC up to what point?",
+                        options: ["Its bandwidth (BW)", "Its critical frequency ($f_c$)", "1 kHz", "1 MHz"],
+                        answer: "Its critical frequency ($f_c$)",
+                        explanation: "A low-pass filter allows frequencies from DC (direct current, or zero frequency) up to its cutoff frequency ($f_c$) to pass with minimal attenuation."
+                    },
+                    {
+                        question: "What is the theoretical 'brick-wall' response of an ideal low-pass filter?",
+                        options: ["Gradual attenuation beyond the passband.", "Instantaneous drop to zero attenuation beyond the passband.", "Amplification beyond the passband.", "Constant gain across all frequencies."],
+                        answer: "Instantaneous drop to zero attenuation beyond the passband.",
+                        explanation: "An ideal low-pass filter's response is referred to as 'brick-wall' because it would theoretically have an instantaneous and complete drop in response at the cutoff frequency, blocking everything beyond it."
+                    },
+                    {
+                        question: "In a high-pass filter, what happens to frequencies below the critical frequency ($f_c$)?",
+                        options: ["They are amplified.", "They are significantly attenuated or rejected.", "They pass through unaffected.", "They are converted to DC."],
+                        answer: "They are significantly attenuated or rejected.",
+                        explanation: "A high-pass filter is designed to block or severely reduce signals that have frequencies below its critical frequency, while allowing higher frequencies to pass."
+                    },
+                    {
+                        question: "How is the bandwidth (BW) of a band-pass filter defined?",
+                        options: ["The sum of the lower and upper critical frequencies.", "The difference between the upper critical frequency ($f_{c2}$) and the lower critical frequency ($f_{c1}$).", "The average of the lower and upper critical frequencies.", "The product of the lower and upper critical frequencies."],
+                        answer: "The difference between the upper critical frequency ($f_{c2}$) and the lower critical frequency ($f_{c1}$).",
+                        explanation: "For a band-pass filter, the bandwidth (BW) is the range of frequencies it passes, calculated as the upper cutoff frequency minus the lower cutoff frequency ($BW = f_{c2} - f_{c1}$). "
+                    },
+                    {
+                        question: "What is another common name for a band-stop filter?",
+                        options: ["Notch filter", "All-pass filter", "Shelf filter", "Resonant filter"],
+                        answer: "Notch filter",
+                        explanation: "Band-stop filters are also widely known as notch filters because they create a 'notch' or deep attenuation at a specific band of frequencies."
+                    },
+                    {
+                        question: "Which filter response characteristic provides a very flat amplitude response in the passband and a roll-off rate of -20 dB/decade/pole?",
+                        options: ["Chebyshev characteristic", "Bessel characteristic", "Butterworth characteristic", "Gaussian characteristic"],
+                        answer: "Butterworth characteristic",
+                        explanation: "The Butterworth filter characteristic is known for its maximally flat amplitude response in the passband, making it ideal when a uniform gain across the passband is crucial."
+                    },
+                    {
+                        question: "Which filter response characteristic is known for having overshoot or ripples in the passband and a steeper roll-off rate than the Butterworth?",
+                        options: ["Butterworth characteristic", "Bessel characteristic", "Chebyshev characteristic", "Ideal 'brick-wall' characteristic"],
+                        answer: "Chebyshev characteristic",
+                        explanation: "Chebyshev filters offer a steeper roll-off than Butterworth filters but achieve this at the cost of ripples (or overshoot) within the passband, depending on the filter's order."
+                    },
+                    {
+                        question: "What is the primary advantage of the Bessel filter characteristic?",
+                        options: ["Very flat amplitude response.", "Steepest roll-off rate.", "Linear phase characteristic, resulting in almost no overshoot with a pulse input.", "High gain in the stopband."],
+                        answer: "Linear phase characteristic, resulting in almost no overshoot with a pulse input.",
+                        explanation: "The Bessel filter is designed to have a linear phase response, which minimizes distortion of the waveform, especially for pulse inputs, by ensuring all frequency components experience the same time delay."
+                    },
+                    {
+                        question: "What does the Damping Factor (DF) of an active filter circuit determine?",
+                        options: ["The maximum gain of the filter.", "The number of poles in the filter.", "Which response characteristic (Butterworth, Chebyshev, Bessel) the filter exhibits.", "The power consumption of the filter."],
+                        answer: "Which response characteristic (Butterworth, Chebyshev, Bessel) the filter exhibits.",
+                        explanation: "The damping factor is a crucial parameter in active filter design that directly controls the shape of the filter's frequency response, influencing whether it behaves like a Butterworth, Chebyshev, or Bessel filter."
+                    },
+                    {
+                        question: "How is the Damping Factor (DF) of an active filter determined, according to the provided information?",
+                        options: ["By the amplifier's gain.", "By the filter section's components.", "By the negative feedback circuit.", "By the input signal frequency."],
+                        answer: "By the negative feedback circuit.",
+                        explanation: "The damping factor of an active filter, particularly in a noninverting configuration with an amplifier and feedback, is primarily determined by the components within the negative feedback circuit."
+                    },
+                    {
+                        question: "What does a 'pole' represent in the context of filter design, as described in the material?",
+                        options: ["A complete filter circuit.", "Simply a circuit with one resistor and one capacitor.", "The amplifier stage of the filter.", "The critical frequency point."],
+                        answer: "Simply a circuit with one resistor and one capacitor.",
+                        explanation: "For filter purposes, a pole is simplified as a circuit containing one resistor and one capacitor, contributing to the filter's order and roll-off rate."
+                    },
+                    {
+                        question: "What determines the roll-off rate of a filter?",
+                        options: ["The type of active component used.", "The passband gain.", "The number of poles.", "The critical frequency."],
+                        answer: "The number of poles.",
+                        explanation: "The number of poles in a filter directly dictates its roll-off rate, meaning how sharply the gain attenuates beyond the cutoff frequency. More poles lead to a steeper roll-off."
+                    },
+                    {
+                        question: "To obtain a third-order filter, what cascading arrangement is suggested?",
+                        options: ["Two first-order filters.", "Two second-order filters.", "A second-order filter and a first-order filter.", "Three first-order filters."],
+                        answer: "A second-order filter and a first-order filter.",
+                        explanation: "To achieve a higher-order filter, such as a third-order filter, individual filter stages can be cascaded. A common way is to combine a second-order stage with a first-order stage."
+                    },
+                    {
+                        question: "What are filters that include one or more operational amplifiers (op-amps) in their design called?",
+                        options: ["Passive filters", "Digital filters", "Active filters", "Mechanical filters"],
+                        answer: "Active filters",
+                        explanation: "Filters that incorporate active components like operational amplifiers (op-amps) in addition to passive components are known as active filters."
+                    },
+                    {
+                        question: "What is the roll-off rate of a first-order active low-pass filter?",
+                        options: ["-40 dB/decade after the cutoff frequency.", "-20 dB/decade after the cutoff frequency.", "-60 dB/decade after the cutoff frequency.", "-10 dB/decade after the cutoff frequency."],
+                        answer: "-20 dB/decade after the cutoff frequency.",
+                        explanation: "A first-order active low-pass filter, characterized by having only one reactive component (capacitor), exhibits a roll-off rate of -20 dB/decade beyond its cutoff frequency."
+                    },
+                    {
+                        question: "How many resistors and capacitors are typically used to form the filter section in a first-order active low-pass filter?",
+                        options: ["Two resistors and one capacitor.", "One resistor and two capacitors.", "One resistor and one capacitor.", "Two resistors and two capacitors."],
+                        answer: "One resistor and one capacitor.",
+                        explanation: "A first-order active low-pass filter is the simplest type, using a single resistor (R) and a single capacitor (C) to create the filtering action."
+                    },
+                    {
+                        question: "What is the roll-off rate of a second-order active low-pass filter?",
+                        options: ["-20 dB/decade.", "-40 dB/decade.", "-60 dB/decade.", "-10 dB/decade."],
+                        answer: "-40 dB/decade.",
+                        explanation: "A second-order active low-pass filter, which contains two reactive components, provides a sharper roll-off rate of -40 dB/decade beyond its cutoff frequency, offering better high-frequency signal blocking."
+                    },
+                    {
+                        question: "What is the primary purpose of an operational amplifier (op-amp) in an active high-pass filter?",
+                        options: ["To block high-frequency signals.", "To only act as a resistor.", "To provide amplification (gain), impedance buffering, and better control of the filter response.", "To generate new frequencies."],
+                        answer: "To provide amplification (gain), impedance buffering, and better control of the filter response.",
+                        explanation: "The op-amp is what makes a filter 'active,' offering advantages like signal gain, isolation between stages (impedance buffering), and enabling more complex and precise filter characteristics."
+                    },
+                    {
+                        question: "In a first-order active high-pass filter, what component is primarily responsible for blocking low-frequency signals?",
+                        options: ["The resistor (R)", "The operational amplifier (op-amp)", "The capacitor (C)", "The power supply"],
+                        answer: "The capacitor (C)",
+                        explanation: "In an RC high-pass filter configuration, the capacitor's impedance is very high at low frequencies, effectively blocking them, while its impedance decreases at higher frequencies, allowing them to pass."
+                    },
+                    {
+                        question: "How does the gain behave for a first-order active high-pass filter below its cutoff frequency?",
+                        options: ["Gain becomes constant.", "Gain increases at +20 dB/decade.", "Gain decreases at -20 dB/decade.", "Gain drops to zero immediately."],
+                        answer: "Gain decreases at -20 dB/decade.",
+                        explanation: "Below the cutoff frequency, a first-order high-pass filter attenuates signals, with its gain decreasing at a rate of -20 dB for every decade (tenfold increase) in frequency."
+                    },
+                    {
+                        question: "What is the specific value of output signal strength at the cutoff frequency of a filter, relative to the input signal?",
+                        options: ["100%", "50%", "70.7% (-3 dB point)", "0%"],
+                        answer: "70.7% (-3 dB point)",
+                        explanation: "The cutoff frequency of any filter type is defined as the point where the output signal amplitude drops to 70.7% of its maximum passband value, which corresponds to a -3 dB attenuation."
+                    },
+                    {
+                        question: "What is the roll-off rate of a second-order active high-pass filter?",
+                        options: ["-20 dB/decade", "-40 dB/decade", "-60 dB/decade", "-10 dB/decade"],
+                        answer: "-40 dB/decade",
+                        explanation: "A second-order active high-pass filter, like its low-pass counterpart, provides a sharper roll-off of -40 dB/decade below its cutoff frequency, offering stronger attenuation of low-frequency signals."
+                    },
+                    {
+                        question: "How is a band-pass filter typically formed by combining other basic filter types?",
+                        options: ["By connecting a high-pass filter in parallel with a low-pass filter.", "By connecting a high-pass filter in series with a low-pass filter.", "By cascading two band-stop filters.", "By using only resistors."],
+                        answer: "By connecting a high-pass filter in series with a low-pass filter.",
+                        explanation: "A common method to create a band-pass filter is to cascade (connect in series) a high-pass filter, which blocks low frequencies, and a low-pass filter, which blocks high frequencies, allowing only a 'band' of frequencies in between to pass."
+                    },
+                    {
+                        question: "What does a higher Quality factor (Q) indicate in a band-pass filter?",
+                        options: ["A wider bandwidth.", "A narrower bandwidth and better selectivity.", "A lower center frequency.", "Less gain."],
+                        answer: "A narrower bandwidth and better selectivity.",
+                        explanation: "A higher Q factor means that the filter is more selective, passing a narrower range of frequencies around its center frequency while rejecting others more effectively."
+                    },
+                    {
+                        question: "If a band-pass filter has a center frequency ($f_0$) of 15 kHz and a bandwidth (BW) of 1 kHz, what is its Quality factor (Q)?",
+                        options: ["Q = 15", "Q = 150", "Q = 1.5", "Q = 0.067"],
+                        answer: "Q = 15",
+                        explanation: "The quality factor (Q) is calculated as the ratio of the center frequency to the bandwidth ($Q = f_0 / BW$). So, $Q = 15 \\text{ kHz} / 1 \\text{ kHz} = 15$."
+                    },
+                    {
+                        question: "What is the classification of a band-pass filter with a Q value greater than 10?",
+                        options: ["Wide Band", "Narrow Band", "All-pass", "High-pass"],
+                        answer: "Narrow Band",
+                        explanation: "Band-pass filters are classified as 'Narrow Band' when their Quality factor (Q) is greater than 10, indicating a highly selective filter."
+                    },
+                    {
+                        question: "Which type of band-pass filter uses a single op-amp with multiple feedback paths and is known for its compact design and high selectivity?",
+                        options: ["Cascaded Low-Pass and High-Pass Filter", "State Variable Filter (SVF)", "Multiple Feedback (MFB) Bandpass Filter", "Passive Bandpass Filter"],
+                        answer: "Multiple Feedback (MFB) Bandpass Filter",
+                        explanation: "The Multiple Feedback (MFB) Bandpass Filter is characterized by using a single operational amplifier with several feedback paths, making it compact and highly selective, especially for narrowband applications."
+                    },
+                    {
+                        question: "Which type of band-pass filter is capable of simultaneously generating low-pass, high-pass, and band-pass outputs?",
+                        options: ["Cascaded Low-Pass and High-Pass Filter", "Multiple Feedback (MFB) Bandpass Filter", "State Variable Filter (SVF)", "Twin-T Notch Filter"],
+                        answer: "State Variable Filter (SVF)",
+                        explanation: "The State Variable Filter (SVF) is a versatile active filter design that typically employs multiple op-amps and can simultaneously provide low-pass, high-pass, and band-pass outputs."
+                    },
+                    {
+                        question: "What is a key feature of a State Variable Filter (SVF) regarding its tuning?",
+                        options: ["It has fixed Q and center frequency.", "Independent tuning of Q and center frequency.", "Only Q can be tuned.", "Only center frequency can be tuned."],
+                        answer: "Independent tuning of Q and center frequency.",
+                        explanation: "A significant advantage of the State Variable Filter (SVF) is its ability to allow independent adjustment of its Quality factor (Q) and center frequency, providing greater flexibility in design."
+                    },
+                    {
+                        question: "What is the fundamental operation of a band-stop filter?",
+                        options: ["Pass all frequencies.", "Amplify a specific band of frequencies.", "Reject a specified band of frequencies and pass all others.", "Convert frequencies."],
+                        answer: "Reject a specified band of frequencies and pass all others.",
+                        explanation: "A band-stop filter, also known as a notch filter, functions by attenuating or rejecting signals within a particular frequency range while allowing frequencies outside that range to pass through."
+                    },
+                    {
+                        question: "How does a Multiple-Feedback Band-Stop Filter attenuate a narrow range of frequencies?",
+                        options: ["By amplifying them.", "By converting them to DC.", "By selectively rejecting them around the 'notch' frequency.", "By passing them unaffected."],
+                        answer: "By selectively rejecting them around the 'notch' frequency.",
+                        explanation: "The Multiple-Feedback Band-Stop Filter is specifically designed to create a deep attenuation or 'notch' at a very narrow range of frequencies, effectively blocking them."
+                    },
+                    {
+                        question: "What is the purpose of 'Frequency Response Measurement' for a filter?",
+                        options: ["To determine the filter's physical size.", "To determine how a filter responds to different input frequencies.", "To measure the filter's power consumption.", "To test the filter's temperature stability."],
+                        answer: "To determine how a filter responds to different input frequencies.",
+                        explanation: "Frequency response measurement is a critical process to characterize a filter's performance across its operating frequency range, observing how its output amplitude or voltage changes with varying input frequencies."
+                    },
+                    {
+                        question: "Which frequency response measurement method involves setting a sine wave generator to a starting frequency, measuring output, recording, and then increasing frequency in small steps?",
+                        options: ["Swept Frequency Measurement", "Spectrum Analysis", "Discrete-Point Measurement", "Real-time Analysis"],
+                        answer: "Discrete-Point Measurement",
+                        explanation: "Discrete-Point Measurement is a manual method where the filter's response is measured at individual, specific frequencies, making it simple but time-consuming."
+                    },
+                    {
+                        question: "What is a key advantage of the Discrete-Point Measurement method?",
+                        options: ["Fast and efficient.", "High resolution and accuracy.", "Simple and inexpensive setup.", "Automatic plotting of response curve."],
+                        answer: "Simple and inexpensive setup.",
+                        explanation: "Discrete-Point Measurement requires only basic equipment like a sine wave generator and a voltmeter/oscilloscope, making it a cost-effective and easy-to-understand method."
+                    },
+                    {
+                        question: "What is a major disadvantage of the Discrete-Point Measurement method?",
+                        options: ["Requires expensive equipment.", "Time-consuming and prone to human error.", "Not suitable for low-frequency filters.", "Cannot measure filter gain."],
+                        answer: "Time-consuming and prone to human error.",
+                        explanation: "The manual nature of Discrete-Point Measurement, where frequencies are changed step-by-step and data recorded, makes it a slow process and susceptible to human mistakes."
+                    },
+                    {
+                        question: "Which frequency response measurement method uses a swept-frequency generator and captures the full response curve quickly?",
+                        options: ["Discrete-Point Measurement", "Static Measurement", "Swept Frequency Measurement", "Impulse Response Measurement"],
+                        answer: "Swept Frequency Measurement",
+                        explanation: "Swept Frequency Measurement employs a generator that continuously varies its output frequency over a range, allowing for rapid capture of the filter's complete frequency response curve."
+                    },
+                    {
+                        question: "Which specialized instrument is ideally designed to analyze signals in the frequency domain and directly displays amplitude vs. frequency with high accuracy?",
+                        options: ["Oscilloscope", "Multimeter", "Spectrum Analyzer", "Function Generator"],
+                        answer: "Spectrum Analyzer",
+                        explanation: "A spectrum analyzer is a dedicated instrument for frequency-domain analysis, providing highly accurate and detailed displays of signal amplitude as a function of frequency."
+                    },
+                    {
+                        question: "When using an oscilloscope for swept frequency measurement, in which mode is the scope typically placed?",
+                        options: ["Time-domain mode", "X-Y mode", "Dual-channel mode", "Trigger mode"],
+                        answer: "X-Y mode",
+                        explanation: "For swept frequency measurements with an oscilloscope, it is typically set to X-Y mode, where the X-axis represents the sweep voltage (frequency) and the Y-axis represents the output voltage (amplitude)."
+                    },
+                    {
+                        question: "What is a major advantage of Swept Frequency Measurement compared to Discrete-Point Measurement?",
+                        options: ["Lower cost equipment.", "Simpler setup.", "Fast and efficient measurement over a wide frequency range.", "Less prone to calibration issues."],
+                        answer: "Fast and efficient measurement over a wide frequency range.",
+                        explanation: "The ability of swept frequency generators to cover a broad frequency range rapidly makes this method much faster and more efficient for characterizing filter responses."
+                    },
+                    {
+                        question: "Which of the following is a disadvantage of Swept Frequency Measurement?",
+                        options: ["Limited resolution.", "Requires manual frequency changes.", "Requires expensive equipment.", "Not suitable for high-frequency filters."],
+                        answer: "Requires expensive equipment.",
+                        explanation: "Swept frequency measurement typically necessitates more advanced and costly equipment, such as spectrum analyzers or sophisticated oscilloscopes, making it a more significant investment."
+                    },
+                    {
+                        question: "In audio systems, what type of filters are used in crossover networks for subwoofers?",
+                        options: ["High-pass filters", "Band-pass filters", "Low-pass filters", "Band-stop filters"],
+                        answer: "Low-pass filters",
+                        explanation: "Crossover networks use low-pass filters for subwoofers to allow only the low-frequency bass signals to pass through to them, ensuring clear sound reproduction."
+                    },
+                    {
+                        question: "How are active filters used in communication systems?",
+                        options: ["To amplify noise.", "To allow only desired frequency bands and reject interference.", "To generate carrier frequencies.", "To convert analog signals to digital."],
+                        answer: "To allow only desired frequency bands and reject interference.",
+                        explanation: "Active filters play a crucial role in communication systems, such as radio receivers, by isolating specific frequency bands corresponding to desired signals and rejecting unwanted interference."
+                    },
+                    {
+                        question: "In medical equipment like ECG or EEG machines, what is the purpose of using low-pass filters?",
+                        options: ["To increase the signal amplitude.", "To remove noise from biological signals.", "To convert AC signals to DC.", "To transmit signals wirelessly."],
+                        answer: "To remove noise from biological signals.",
+                        explanation: "Low-pass filters are essential in medical equipment to eliminate high-frequency electrical noise that can contaminate sensitive biological signals, ensuring accurate readings."
+                    },
+                    {
+                        question: "What is the application of low-pass filters in power supplies and voltage regulators?",
+                        options: ["To generate AC voltage.", "To filter out AC ripple from DC outputs.", "To increase the input voltage.", "To regulate current."],
+                        answer: "To filter out AC ripple from DC outputs.",
+                        explanation: "Low-pass filters are essential in power supplies to smooth out the rectified DC voltage by removing any residual AC ripple or hum, providing a cleaner DC output."
+                    },
+                    {
+                        question: "An RFID reader uses a band-pass filter for what specific purpose?",
+                        options: ["To amplify all incoming signals.", "To isolate the exact frequency of the RFID tag and reject nearby interfering signals.", "To convert the tag's signal into audio.", "To block the tag's frequency."],
+                        answer: "To isolate the exact frequency of the RFID tag and reject nearby interfering signals.",
+                        explanation: "Band-pass filters in RFID systems are crucial for ensuring that the reader only picks up signals from the specific frequency emitted by the RFID tags, effectively filtering out other environmental noise."
+                    },
+                    {
+                        question: "What is an 'active' filter distinguished by, compared to a 'passive' filter?",
+                        options: ["It uses only resistors and capacitors.", "It requires no external power source.", "It includes active components like operational amplifiers (op-amps).", "It only operates at low frequencies."],
+                        answer: "It includes active components like operational amplifiers (op-amps).",
+                        explanation: "The key differentiator of an active filter is the inclusion of active devices, typically op-amps, which provide gain and allow for more complex filter characteristics without using large inductors."
+                    },
+                    {
+                        question: "A filter's response dropping to 70.7% from the passband response corresponds to what decibel (dB) value?",
+                        options: ["0 dB", "-1 dB", "-3 dB", "-10 dB"],
+                        answer: "-3 dB",
+                        explanation: "A 70.7% drop in voltage or amplitude from the passband response is equivalent to a -3 dB attenuation, which is the standard definition for the cutoff frequency of a filter."
+                    }
+                ],
+                currentQuestionIndex: 0,
+                userAnswers: []
+            }
+        ];
+
+        let activeQuizId = 'oscillator'; // Default active quiz
+        let currentQuizData; // Reference to the active quiz object
+
+        // Initialize userAnswers arrays for each quiz
+        quizzes.forEach(quiz => {
+            quiz.userAnswers = new Array(quiz.questions.length).fill(null);
+        });
+
+        // Get references to all common DOM elements for easier access
+        function getQuizElements(quizId) {
+            return {
+                questionTextElement: document.getElementById(`${quizId}-question-text`),
+                optionsContainer: document.getElementById(`${quizId}-options-container`),
+                nextButton: document.getElementById(`${quizId}-next-button`),
+                prevButton: document.getElementById(`${quizId}-prev-button`),
+                submitButton: document.getElementById(`${quizId}-submit-button`),
+                questionArea: document.getElementById(`${quizId}-question-area`),
+                resultsArea: document.getElementById(`${quizId}-results-area`),
+                scoreDisplay: document.getElementById(`${quizId}-score-display`),
+                totalQuestionsDisplay: document.getElementById(`${quizId}-total-questions-display`),
+                restartButton: document.getElementById(`${quizId}-restart-button`),
+                progressBar: document.getElementById(`${quizId}-progress-bar`)
+            };
+        }
+
+        /**
+         * Loads the current question and its options for the active quiz.
+         * Clears previous options and selected state.
+         * Shows/hides navigation buttons based on current question index.
+         */
+        function loadQuestion() {
+            currentQuizData = quizzes.find(quiz => quiz.id === activeQuizId);
+            const elements = getQuizElements(activeQuizId);
+
+            // Update progress bar
+            const progress = (currentQuizData.currentQuestionIndex / currentQuizData.questions.length) * 100;
+            elements.progressBar.style.width = `${progress}%`;
+
+            const currentQuestion = currentQuizData.questions[currentQuizData.currentQuestionIndex];
+            elements.questionTextElement.innerHTML = `${currentQuizData.currentQuestionIndex + 1}. ${currentQuestion.question}`; // Use innerHTML for MathJax (if present)
+            elements.optionsContainer.innerHTML = ''; // Clear previous options
+
+            currentQuestion.options.forEach((option, index) => {
+                const optionId = `${activeQuizId}-option${index}`;
+                const label = document.createElement('label');
+                label.className = 'option-label';
+                label.htmlFor = optionId;
+
+                const radioInput = document.createElement('input');
+                radioInput.type = 'radio';
+                radioInput.name = `${activeQuizId}-answer`;
+                radioInput.id = optionId;
+                radioInput.value = option;
+                // Use a closure to capture current quiz ID and option for the event handler
+                radioInput.onchange = (function(quizId, optId, optValue) {
+                    return function() {
+                        handleOptionSelection(quizId, optId, optValue);
+                    };
+                })(activeQuizId, optionId, option);
+
+                // Check if this option was previously selected by the user for the current quiz
+                if (currentQuizData.userAnswers[currentQuizData.currentQuestionIndex] === option) {
+                    radioInput.checked = true;
+                    label.classList.add('selected');
+                }
+
+                const span = document.createElement('span');
+                span.textContent = option;
+
+                label.appendChild(radioInput);
+                label.appendChild(span);
+                elements.optionsContainer.appendChild(label);
+            });
+
+            // Handle button visibility
+            elements.prevButton.classList.toggle('hidden', currentQuizData.currentQuestionIndex === 0);
+            elements.nextButton.classList.toggle('hidden', currentQuizData.currentQuestionIndex === currentQuizData.questions.length - 1);
+            elements.submitButton.classList.toggle('hidden', currentQuizData.currentQuestionIndex !== currentQuizData.questions.length - 1);
+        }
+
+        /**
+         * Handles the visual selection of an option and stores the user's answer.
+         * @param {string} quizId - The ID of the active quiz.
+         * @param {string} selectedOptionId - The ID of the selected radio button.
+         * @param {string} selectedOptionValue - The value of the selected option.
+         */
+        function handleOptionSelection(quizId, selectedOptionId, selectedOptionValue) {
+            const elements = getQuizElements(quizId);
+            // Remove 'selected' class from all options for the current quiz
+            document.querySelectorAll(`#${quizId}-options-container .option-label`).forEach(label => {
+                label.classList.remove('selected');
+            });
+            // Add 'selected' class to the currently selected option
+            document.getElementById(selectedOptionId).parentElement.classList.add('selected');
+
+            // Store the answer in the correct quiz's userAnswers array
+            const quizData = quizzes.find(q => q.id === quizId);
+            if (quizData) {
+                quizData.userAnswers[quizData.currentQuestionIndex] = selectedOptionValue;
+            }
+        }
+
+        /**
+         * Checks the user's answer for the current question and displays the explanation.
+         */
+        function checkAnswerAndShowExplanation() {
+            const quizData = quizzes.find(quiz => quiz.id === activeQuizId);
+            const elements = getQuizElements(activeQuizId);
+
+            const selectedOption = quizData.userAnswers[quizData.currentQuestionIndex];
+            const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
+
+            // Remove any existing explanation box
+            const existingExplanation = elements.optionsContainer.querySelector('.explanation-box');
+            if (existingExplanation) {
+                existingExplanation.remove();
+            }
+
+            const explanationBox = document.createElement('div');
+            explanationBox.className = 'explanation-box';
+
+            const correctnessParagraph = document.createElement('p');
+            if (selectedOption === currentQuestion.answer) {
+                correctnessParagraph.innerHTML = '<strong>Correct!</strong>';
+                correctnessParagraph.style.color = '#38a169'; // Green text
+            } else {
+                correctnessParagraph.innerHTML = `<strong>Incorrect.</strong> The correct answer was: <strong>${currentQuestion.answer}</strong>`;
+                correctnessParagraph.style.color = '#e53e3e'; // Red text
+            }
+            explanationBox.appendChild(correctnessParagraph);
+
+            const explanationParagraph = document.createElement('p');
+            explanationParagraph.textContent = currentQuestion.explanation;
+            explanationBox.appendChild(explanationParagraph);
+
+            elements.optionsContainer.appendChild(explanationBox);
+        }
+
+        /**
+         * Navigates to the next question or submits the quiz.
+         */
+        function handleNextClick() {
+            checkAnswerAndShowExplanation();
+
+            setTimeout(() => {
+                const quizData = quizzes.find(quiz => quiz.id === activeQuizId);
+                if (quizData.currentQuestionIndex < quizData.questions.length - 1) {
+                    quizData.currentQuestionIndex++;
+                    loadQuestion();
+                } else {
+                    handleSubmitQuiz();
+                }
+            }, 1500); // 1.5 second delay
+        }
+
+        /**
+         * Navigates to the previous question.
+         */
+        function handlePrevClick() {
+            const quizData = quizzes.find(quiz => quiz.id === activeQuizId);
+            if (quizData.currentQuestionIndex > 0) {
+                quizData.currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        /**
+         * Calculates the final score and displays the results for the active quiz.
+         */
+        function handleSubmitQuiz() {
+            const quizData = quizzes.find(quiz => quiz.id === activeQuizId);
+            const elements = getQuizElements(activeQuizId);
+
+            let currentScore = 0;
+            for (let i = 0; i < quizData.questions.length; i++) {
+                if (quizData.userAnswers[i] === quizData.questions[i].answer) {
+                    currentScore++;
+                }
+            }
+            quizData.score = currentScore; // Update the quiz object's score
+
+            elements.questionArea.classList.add('hidden');
+            elements.resultsArea.classList.remove('hidden');
+            elements.scoreDisplay.textContent = quizData.score;
+            elements.totalQuestionsDisplay.textContent = quizData.questions.length;
+            elements.progressBar.style.width = '100%'; // Ensure progress bar is full at the end
+        }
+
+        /**
+         * Resets the active quiz to its initial state.
+         */
+        function restartQuiz() {
+            const quizData = quizzes.find(quiz => quiz.id === activeQuizId);
+            const elements = getQuizElements(activeQuizId);
+
+            quizData.currentQuestionIndex = 0;
+            quizData.score = 0;
+            quizData.userAnswers.fill(null); // Reset all answers
+            elements.resultsArea.classList.add('hidden');
+            elements.questionArea.classList.remove('hidden');
+            loadQuestion();
+        }
+
+        /**
+         * Switches the active quiz tab content. Note: 'formulas' tab is now a direct link.
+         * @param {string} newTabId - The ID of the tab to switch to.
+         */
+        function switchTab(newTabId) {
+            activeQuizId = newTabId;
+
+            // Hide all quiz content areas explicitly by manipulating display style
+            document.querySelectorAll('.quiz-content').forEach(content => {
+                content.style.display = 'none';
+            });
+
+            // Show the selected quiz content area explicitly
+            const targetContent = document.getElementById(`${newTabId}-quiz-content`);
+            if (targetContent) { // Ensure the element exists before trying to manipulate it
+                targetContent.style.display = 'block';
+            }
+
+            // Deactivate all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            // Activate the clicked tab button
+            document.getElementById(`tab-${newTabId}`).classList.add('active');
+
+            // Only load questions if it's a quiz tab
+            if (newTabId !== 'formulas') {
+                loadQuestion();
+            }
+        }
+
+        // Add event listeners for each quiz's buttons
+        document.getElementById('oscillator-next-button').addEventListener('click', handleNextClick);
+        document.getElementById('oscillator-prev-button').addEventListener('click', handlePrevClick);
+        document.getElementById('oscillator-submit-button').addEventListener('click', handleSubmitQuiz);
+        document.getElementById('oscillator-restart-button').addEventListener('click', restartQuiz);
+
+        document.getElementById('activeFilters-next-button').addEventListener('click', handleNextClick);
+        document.getElementById('activeFilters-prev-button').addEventListener('click', handlePrevClick);
+        document.getElementById('activeFilters-submit-button').addEventListener('click', handleSubmitQuiz);
+        document.getElementById('activeFilters-restart-button').addEventListener('click', restartQuiz);
+
+        // Initial call to ensure the correct tab is displayed on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check the current URL to decide which tab to activate if coming from formulas.html
+            if (window.location.hash === '#formulas') {
+                // This might not be necessary if formulas.html is a separate file entirely.
+                // The main page should always start on a quiz tab.
+                switchTab('oscillator');
+            } else {
+                switchTab('oscillator'); // Default to Oscillator quiz on initial load
+            }
+        });
+    </script>
+</body>
+</html>
