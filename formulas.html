@@ -25,7 +25,6 @@
             padding: 1.5rem; /* Reduced padding for mobile */
             border-radius: 1.5rem; /* More rounded corners */
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow for pop */
-            line-height: 1.6; /* Adjusted line height for better readability on small screens */
         }
         @media (min-width: 640px) { /* Small breakpoint for tablets/larger mobiles */
             body {
@@ -91,6 +90,7 @@
             padding-left: 1.5rem; /* Indent content */
             position: relative; /* For custom bullet */
             font-size: 0.95rem; /* Slightly smaller for mobile readability */
+            line-height: 1.6; /* Optimized line height for readability */
         }
         @media (min-width: 768px) {
             li {
@@ -111,7 +111,7 @@
         }
         p {
             margin-bottom: 1rem;
-            line-height: 1.7;
+            line-height: 1.6; /* Optimized line height for readability */
             font-size: 0.95rem; /* Adjusted for mobile */
         }
         @media (min-width: 768px) {
@@ -132,8 +132,9 @@
             display: block; /* Make it a block element for better layout */
             margin-top: 0.6rem; /* Adjusted margin */
             margin-bottom: 0.6rem; /* Adjusted margin */
-            white-space: pre-wrap; /* Allow long formulas to wrap */
-            word-break: break-all; /* Break words if too long */
+            white-space: pre-wrap; /* Allows wrapping, respects white-space */
+            overflow-x: auto; /* Allow horizontal scrolling for long formulas */
+            /* Removed word-break: break-all; to prevent arbitrary breaking of formulas */
         }
         @media (min-width: 768px) {
             code {
