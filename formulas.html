@@ -15,19 +15,31 @@
             justify-content: center;
             align-items: flex-start; /* Align to top */
             min-height: 100vh;
-            padding: 2rem; /* Padding around the container */
+            padding: 1rem; /* Reduced padding for mobile */
             color: #333; /* Default text color */
         }
         .formulas-container {
-            max-width: 90%;
+            max-width: 100%; /* Allow full width on small screens */
             margin: 0 auto; /* Center content horizontally */
             background-color: #ffffff;
-            padding: 3rem; /* Increased padding */
+            padding: 1.5rem; /* Reduced padding for mobile */
             border-radius: 1.5rem; /* More rounded corners */
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow for pop */
-            line-height: 1.8;
+            line-height: 1.6; /* Adjusted line height for better readability on small screens */
         }
-        @media (min-width: 768px) {
+        @media (min-width: 640px) { /* Small breakpoint for tablets/larger mobiles */
+            body {
+                padding: 1.5rem;
+            }
+            .formulas-container {
+                padding: 2.5rem;
+                max-width: 90%;
+            }
+        }
+        @media (min-width: 768px) { /* Medium breakpoint for desktops */
+            body {
+                padding: 2rem;
+            }
             .formulas-container {
                 max-width: 900px; /* Wider for better readability of formulas */
                 padding: 4rem; /* More generous padding on larger screens */
@@ -36,22 +48,35 @@
 
         /* Heading styles */
         h2 {
-            font-size: 2.5rem; /* Larger main title */
+            font-size: 2rem; /* Adjusted for mobile */
             font-weight: 800; /* Extra bold */
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; /* Adjusted margin */
             color: #2c5282; /* Darker blue heading */
             text-align: center;
             letter-spacing: -0.025em; /* Slightly tighter letter spacing */
         }
+        @media (min-width: 768px) {
+            h2 {
+                font-size: 2.5rem; /* Larger main title on desktop */
+                margin-bottom: 2rem;
+            }
+        }
         h3 {
-            font-size: 1.75rem; /* Larger subheadings */
+            font-size: 1.5rem; /* Adjusted for mobile */
             font-weight: 700;
-            margin-top: 3rem; /* More space above section headings */
-            margin-bottom: 1.5rem;
+            margin-top: 2.5rem; /* Adjusted margin */
+            margin-bottom: 1rem; /* Adjusted margin */
             color: #4a5568; /* Slightly muted sub-heading color */
             border-bottom: 2px solid #e2e8f0; /* Thicker border for separation */
             padding-bottom: 0.75rem;
             text-align: left;
+        }
+        @media (min-width: 768px) {
+            h3 {
+                font-size: 1.75rem; /* Larger subheadings on desktop */
+                margin-top: 3rem;
+                margin-bottom: 1.5rem;
+            }
         }
 
         /* List and paragraph styles */
@@ -59,12 +84,19 @@
             list-style: none; /* Remove default list style */
             padding: 0;
             margin-left: 0;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem; /* Adjusted margin */
         }
         li {
-            margin-bottom: 1.5rem; /* More space between list items */
+            margin-bottom: 1rem; /* Adjusted space between list items */
             padding-left: 1.5rem; /* Indent content */
             position: relative; /* For custom bullet */
+            font-size: 0.95rem; /* Slightly smaller for mobile readability */
+        }
+        @media (min-width: 768px) {
+            li {
+                margin-bottom: 1.5rem;
+                font-size: 1rem; /* Standard font size on desktop */
+            }
         }
         li::before {
             content: '•'; /* Custom bullet point */
@@ -80,22 +112,34 @@
         p {
             margin-bottom: 1rem;
             line-height: 1.7;
+            font-size: 0.95rem; /* Adjusted for mobile */
+        }
+        @media (min-width: 768px) {
+            p {
+                font-size: 1rem; /* Standard font size on desktop */
+            }
         }
 
         /* Formula code block styling */
         code {
             background-color: #f0f7ff; /* Very light blue background */
             border: 1px solid #cceeff; /* Light blue border */
-            padding: 0.8em 1.2em; /* More padding around code */
+            padding: 0.6em 0.8em; /* Adjusted padding for mobile */
             border-radius: 0.75em; /* Rounded corners for code blocks */
             font-family: 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-            font-size: 1em; /* Slightly larger font for formulas */
+            font-size: 0.9em; /* Slightly smaller font for formulas on mobile */
             color: #2b6cb0; /* Darker blue for formula text */
             display: block; /* Make it a block element for better layout */
-            margin-top: 0.8rem;
-            margin-bottom: 0.8rem;
+            margin-top: 0.6rem; /* Adjusted margin */
+            margin-bottom: 0.6rem; /* Adjusted margin */
             white-space: pre-wrap; /* Allow long formulas to wrap */
             word-break: break-all; /* Break words if too long */
+        }
+        @media (min-width: 768px) {
+            code {
+                padding: 0.8em 1.2em;
+                font-size: 1em; /* Standard font size on desktop */
+            }
         }
 
         /* Horizontal rule (separator) */
@@ -103,15 +147,20 @@
             border: 0;
             height: 2px; /* Thicker HR */
             background-image: linear-gradient(to right, rgba(66, 153, 225, 0), rgba(66, 153, 225, 0.75), rgba(66, 153, 225, 0)); /* Blue gradient */
-            margin: 3rem 0; /* More vertical space */
+            margin: 2rem 0; /* Adjusted vertical space */
+        }
+        @media (min-width: 768px) {
+            hr {
+                margin: 3rem 0;
+            }
         }
 
         /* Back button styling */
         .back-button {
             display: block;
             width: fit-content;
-            margin: 2.5rem auto 0 auto; /* More margin */
-            padding: 1rem 2.2rem; /* Larger button */
+            margin: 2rem auto 0 auto; /* Adjusted margin */
+            padding: 0.8rem 1.8rem; /* Adjusted padding for mobile */
             border-radius: 0.75rem;
             font-weight: 700; /* Bolder text */
             cursor: pointer;
@@ -121,6 +170,12 @@
             color: #ffffff;
             text-decoration: none; /* Remove underline for link */
             text-align: center;
+        }
+        @media (min-width: 768px) {
+            .back-button {
+                margin: 2.5rem auto 0 auto;
+                padding: 1rem 2.2rem;
+            }
         }
         .back-button:hover {
             background-color: #3182ce; /* Darker blue */
@@ -221,7 +276,7 @@
             <li>
                 <strong>First-Order Active Low-Pass Filter: Voltage Gain (<code>Av</code>)</strong>
                 <ul>
-                    <li><strong>Formula:</b> <code>Av = 1 + Rf / Rg</code></li>
+                    <li><strong>Formula:</strong> <code>Av = 1 + Rf / Rg</code></li>
                     <li><strong>Explanation:</strong> This formula determines the constant gain of the first-order low-pass filter within its passband. Since active filters use op-amps, they can provide amplification, unlike passive filters. This gain is set by the ratio of the feedback resistor (<code>Rf</code>) to the gain-setting resistor (<code>Rg</code>) in the op-amp's non-inverting configuration.</li>
                 </ul>
             </li>
