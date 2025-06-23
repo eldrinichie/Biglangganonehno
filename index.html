@@ -698,727 +698,980 @@
                 explanation: "Operational amplifiers are commonly used for a variety of tasks including altering voltage amplitude and polarity, and implementing oscillators and filter circuits, among other instrumentation applications."
             },
             // New questions for Feedback Circuits topic
-            {
-                topic: "Feedback Circuits",
-                question: "What is the primary difference between negative feedback and positive feedback in a circuit?",
-                choices: [
-                    "Negative feedback increases voltage gain, while positive feedback decreases it.",
-                    "Negative feedback generally stabilizes the system, while positive feedback can cause oscillation or saturation.",
-                    "Negative feedback is only used in analog circuits, while positive feedback is only for digital circuits.",
-                    "Positive feedback reduces noise, while negative feedback amplifies it."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The document clearly states that negative feedback stabilizes and improves performance, while positive feedback destabilizes, leading to oscillation or saturation because the returned signal adds to the input."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "Which of the following is NOT an improvement obtained by using negative feedback?",
-                choices: [
-                    "Higher input impedance.",
-                    "Decreased overall voltage gain.",
-                    "Reduced noise.",
-                    "More linear operation."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "While negative feedback offers many improvements, it specifically results in a *reduced* overall voltage gain, which is often a trade-off for the other benefits."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "In a block diagram of a feedback amplifier, what is the role of the mixer network?",
-                choices: [
-                    "To amplify the feedback signal.",
-                    "To combine the input signal ($V_s$) with the feedback signal ($V_f$).",
-                    "To filter out unwanted frequencies from the output signal.",
-                    "To convert the output voltage to a current."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The mixer network receives both the original input signal and the feedback signal, then combines them (usually by subtraction for negative feedback) to produce the amplifier's actual input."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "How is the input voltage ($V_i$) to the amplifier determined in a feedback system, according to the block diagram?",
-                choices: [
-                    "$V_i = V_s + V_o$",
-                    "$V_i = V_f - V_s$",
-                    "$V_i = V_s - V_f$",
-                    "$V_i = A \\cdot V_s$"
-                ],
-                correctAnswerIndex: 2,
-                explanation: "For negative feedback, the feedback signal ($V_f$) is subtracted from the input signal ($V_s$) to produce the actual input voltage ($V_i$) to the amplifier."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "Which term represents the feedback factor in a feedback amplifier, as shown in the block diagram?",
-                choices: [
-                    "A",
-                    "$V_o$",
-                    "$\\beta$",
-                    "$V_s$"
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The Greek letter $\\beta$ (beta) is used to denote the feedback network, which determines how much of the output signal is fed back to the input."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "How many basic ways are there to connect a feedback signal in an amplifier circuit, according to the document?",
-                choices: [
-                    "Two",
-                    "Three",
-                    "Four",
-                    "Five"
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The document explicitly states there are 'four basic ways of connecting the feedback signal: Voltage-series, Voltage-shunt, Current-series, and Current-shunt feedback.'"
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "In Voltage-series feedback, what type of signal is fed back, and how is it connected to the input?",
-                choices: [
-                    "Current feedback, in parallel.",
-                    "Voltage feedback, in series.",
-                    "Current feedback, in series.",
-                    "Voltage feedback, in parallel."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "Voltage-series feedback involves sampling the output voltage and feeding it back in series with the input signal."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "Which feedback connection type is characterized by the feedback current ($I_f$) being connected in shunt (parallel) with the input current ($I_s$)?",
-                choices: [
-                    "Voltage-series feedback",
-                    "Voltage-shunt feedback",
-                    "Current-series feedback",
-                    "Current-shunt feedback"
-                ],
-                correctAnswerIndex: 3,
-                explanation: "Current-shunt feedback specifically involves sampling the output current and mixing it in parallel with the input current."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What is the general formula for the overall gain with feedback ($A_f$) when negative feedback is applied, given the gain without feedback (A) and the feedback factor ($\\beta$)?",
-                choices: [
-                    "$A_f = A \\cdot (1 + \\beta A)$",
-                    "$A_f = A / (1 + \\beta A)$",
-                    "$A_f = A - \\beta A$",
-                    "$A_f = \\beta A$"
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The overall gain of a negative feedback amplifier is reduced by the factor $(1 + \\beta A)$, meaning the gain with feedback is A divided by this factor."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What does 'Gain without Feedback' refer to in the context of feedback amplifiers?",
-                choices: [
-                    "The overall gain of the circuit after feedback is applied.",
-                    "The feedback factor.",
-                    "The open-loop gain of the amplifier stage.",
-                    "The maximum possible gain an amplifier can achieve."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "Gain without Feedback (A) specifically refers to the inherent gain of the amplifier itself before any feedback loop is closed around it."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "In Voltage-series feedback, if the feedback signal ($V_f$) is zero, what does the voltage gain of the amplifier stage represent?",
-                choices: [
-                    "The closed-loop gain.",
-                    "The feedback factor ($\\beta$).",
-                    "The gain with feedback ($A_f$).",
-                    "The gain without feedback (A)."
-                ],
-                correctAnswerIndex: 3,
-                explanation: "When there is no feedback ($V_f = 0$), the amplifier operates in its open-loop configuration, and its gain is referred to as the gain without feedback (A)."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "For Voltage-series feedback, how does the input impedance ($Z_{in}$) typically change with feedback?",
-                choices: [
-                    "It decreases significantly.",
-                    "It remains unchanged.",
-                    "It increases by a factor of $(1 + \\beta A)$.",
-                    "It becomes infinite."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The table on 'INPUT AND OUTPUT IMPEDANCE WITH FEEDBACK' indicates that for Voltage-Series feedback, the input impedance is increased by the factor $(1 + \\beta A)$."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "For Voltage-series feedback, how does the output impedance ($Z_{out}$) typically change with feedback?",
-                choices: [
-                    "It increases.",
-                    "It remains unchanged.",
-                    "It decreases by a factor of $(1 + \\beta A)$.",
-                    "It becomes zero."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The table on 'INPUT AND OUTPUT IMPEDANCE WITH FEEDBACK' indicates that for Voltage-Series feedback, the output impedance is decreased by the factor $(1 + \\beta A)$."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "Which type of feedback connection decreases both the input and output impedance?",
-                choices: [
-                    "Voltage-series",
-                    "Current-series",
-                    "Voltage-shunt",
-                    "Current-shunt"
-                ],
-                correctAnswerIndex: 2,
-                explanation: "According to the table, Voltage-Shunt feedback causes both input and output impedances to decrease."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "In a Current-series feedback configuration, how does the input impedance change?",
-                choices: [
-                    "It decreases.",
-                    "It increases.",
-                    "It remains the same.",
-                    "It is dependent on the output load."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The table shows that for Current-series feedback, the input impedance is increased."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What is the effect of Current-shunt feedback on the input impedance?",
-                choices: [
-                    "It increases.",
-                    "It decreases.",
-                    "It remains unchanged.",
-                    "It becomes infinite."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The table indicates that Current-shunt feedback results in a decreased input impedance."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What is the primary reason an amplifier might 'break into oscillations' at high frequencies?",
-                choices: [
-                    "The gain becomes too low.",
-                    "The phase shift changes, leading to positive feedback.",
-                    "The input impedance becomes too high.",
-                    "The power supply voltage fluctuates."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The document explains that if, as frequency increases, the phase shift changes such that some of the feedback signal adds to the input signal (positive feedback), oscillation can occur."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "Why is it important for a feedback amplifier to be stable at all frequencies, not just the range of interest?",
-                choices: [
-                    "To maximize the amplifier's gain.",
-                    "To prevent any transient disturbance from causing oscillations.",
-                    "To reduce the overall power consumption.",
-                    "To ensure a constant output impedance."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "Proper feedback-amplifier design requires stability across all frequencies to avoid unexpected oscillations triggered by transient disturbances, which would render the amplifier useless."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What are the two determining factors in judging the stability of a feedback amplifier as a function of frequency?",
-                choices: [
-                    "Input impedance and output impedance.",
-                    "Power supply voltage and current consumption.",
-                    "The $\\beta A$ product (loop gain) and the phase shift between input and output.",
-                    "The size of the amplifier and the type of transistors used."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The document states that the $\\beta A$ product and the phase shift are the determining factors for judging amplifier stability."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "Which method is commonly used to investigate the stability of a feedback amplifier?",
-                choices: [
-                    "Bode Plot method.",
-                    "Ohm's Law method.",
-                    "Kirchhoff's Law method.",
-                    "Nyquist method."
-                ],
-                correctAnswerIndex: 3,
-                explanation: "The Nyquist method is highlighted as one of the most popular techniques for investigating the stability of feedback amplifiers."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What does a Nyquist diagram translate into a plot?",
-                choices: [
-                    "Voltage and current as a function of time.",
-                    "Gain and phase shift as a function of frequency on a complex plane.",
-                    "Input impedance against output impedance.",
-                    "Power consumption versus temperature."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "A Nyquist diagram combines gain versus frequency and phase shift versus frequency into a single plot on a complex plane."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What does encircling the -1 point on a Nyquist plot signify for a feedback amplifier?",
-                choices: [
-                    "The amplifier is stable.",
-                    "The amplifier is unstable and will oscillate.",
-                    "The amplifier has unity gain.",
-                    "The amplifier has zero phase shift."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The Nyquist criterion states that an amplifier is unstable if the Nyquist curve encloses (encircles) the –1 point, meaning the loop gain is greater than 1 at a 180° phase shift, causing oscillation."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "According to the Nyquist criterion, when is a feedback amplifier stable?",
-                choices: [
-                    "If the Nyquist curve passes through the -1 point.",
-                    "If the Nyquist curve encloses the -1 point.",
-                    "If the Nyquist curve does NOT enclose the -1 point.",
-                    "If the loop gain ($\\beta A$) is exactly 1 at all frequencies."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The criterion explicitly states that an amplifier is stable if the Nyquist curve does not encircle the –1 point."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "In the context of Nyquist plots, what does it mean if the loop gain ($\\beta A$) is greater than 1 at a phase shift of 180°?",
-                choices: [
-                    "The amplifier is perfectly stable.",
-                    "The feedback signal is out of phase with the input.",
-                    "Oscillation occurs due to positive feedback.",
-                    "The amplifier's bandwidth is maximized."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "Encircling the -1 point means that at 180° phase shift, the loop gain is greater than 1, leading to positive feedback and resulting in oscillation."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What is the purpose of 'Gain Margin' and 'Phase Margin' in feedback amplifier analysis?",
-                choices: [
-                    "To determine the amplifier's maximum output power.",
-                    "To indicate how close to instability the amplifier is.",
-                    "To calculate the amplifier's operating temperature.",
-                    "To measure the distortion introduced by the amplifier."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "Gain and Phase Margins are metrics used to quantify the 'distance' of a stable amplifier from the unstable region, providing an indication of its relative stability."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "If a feedback amplifier has a loop gain ($\\beta A$) of 0.95 at a phase angle of 180°, how stable is it compared to an amplifier with $\\beta A = 0.7$ at the same phase angle?",
-                choices: [
-                    "It is more stable.",
-                    "It is less stable (closer to instability).",
-                    "It has the same stability.",
-                    "Its stability cannot be determined from this information."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "While both values indicate stability (less than unity gain at 180°), a $\\beta A$ of 0.95 is closer to 1, meaning it is less stable and has a smaller gain margin compared to 0.7."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What is the concept of 'Positive feedback' often associated with in terms of practical applications?",
-                choices: [
-                    "Signal amplification.",
-                    "Stabilization of systems.",
-                    "Oscillator circuits.",
-                    "Noise reduction."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The document explicitly states that the use of positive feedback, fulfilling the Barkhausen criterion, results in operation as an oscillator circuit."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "In the example of a microphone near a loudspeaker, what type of feedback causes the high-pitched noise?",
-                choices: [
-                    "Negative feedback.",
-                    "Current feedback.",
-                    "Positive feedback.",
-                    "No feedback."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "This scenario is used as a common example of positive feedback, where the microphone picks up sound from the speaker, feeds it back to the amplifier, and creates a self-reinforcing loop that leads to oscillation (high-pitched noise)."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "According to Barkhausen criterion, what are the requirements for a feedback amplifier to operate as an oscillator circuit?",
-                choices: [
-                    "Unity loop gain and 90° phase shift.",
-                    "Loop gain less than unity and zero phase shift.",
-                    "Unity loop gain and zero phase shift around the feedback loop.",
-                    "Infinite loop gain and 180° phase shift."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The document states that positive feedback resulting in 'unity loop gain and zero phase shift around the feedback loop' are the requirements according to Barkhausen criterion for oscillation."
-            },
-            {
-                topic: "Feedback Circuits",
-                question: "What is an oscillator technically known as, based on the definition provided?",
-                choices: [
-                    "A stable device.",
-                    "An astable device.",
-                    "A monostable device.",
-                    "A bistable device."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "An oscillator is technically known as an astable device because it has 'no stable output state (no equilibrium whatsoever)' and continuously produces an alternating or pulsing output."
-            },
+        
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What is the main benefit of negative feedback in amplifier circuits?",
+                    "choices": [
+                      "Increased distortion",
+                      "Increased output impedance",
+                      "Improved stability and linearity",
+                      "Amplifier oscillation"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Negative feedback stabilizes gain and improves linearity."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What happens to gain when negative feedback is applied?",
+                    "choices": [
+                      "Increases dramatically",
+                      "Remains unchanged",
+                      "Decreases",
+                      "Fluctuates randomly"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Negative feedback reduces overall voltage gain."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "Which of the following is a result of positive feedback?",
+                    "choices": [
+                      "Improved bandwidth",
+                      "Oscillation",
+                      "Decreased distortion",
+                      "Better noise performance"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Positive feedback tends to drive systems into oscillation."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What is the purpose of the feedback factor (β)?",
+                    "choices": [
+                      "To store voltage",
+                      "To isolate inputs",
+                      "To determine the portion of the output fed back",
+                      "To amplify the input"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "β defines how much output is returned to the input."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "Which type of feedback increases input impedance and decreases output impedance?",
+                    "choices": [
+                      "Voltage-shunt",
+                      "Voltage-series",
+                      "Current-shunt",
+                      "Current-series"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Voltage-series feedback has these impedance effects."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What does the Nyquist criterion help assess in feedback systems?",
+                    "choices": [
+                      "Component failure",
+                      "Power efficiency",
+                      "Thermal stability",
+                      "Stability across frequencies"
+                    ],
+                    "correctAnswerIndex": 3,
+                    "explanation": "Nyquist criterion evaluates feedback amplifier stability."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What condition leads to instability according to the Nyquist criterion?",
+                    "choices": [
+                      "Loop gain less than 1",
+                      "Encirclement of the –1 point",
+                      "High gain at low frequencies",
+                      "Zero phase shift"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Enclosing the –1 point indicates instability."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "In a Nyquist plot, what does the –1 point represent?",
+                    "choices": [
+                      "Zero feedback",
+                      "Infinite phase shift",
+                      "Critical stability point",
+                      "Open loop gain"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "If loop gain is 1 at a 180° phase shift (–1 point), oscillation occurs."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "Which feedback type tends to lower both input and output impedance?",
+                    "choices": [
+                      "Voltage-series",
+                      "Current-series",
+                      "Voltage-shunt",
+                      "Power feedback"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Voltage-shunt feedback decreases both impedances."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What happens to an op-amp with strong positive feedback?",
+                    "choices": [
+                      "It becomes more stable",
+                      "It reaches saturation quickly",
+                      "It reduces phase shift",
+                      "It improves signal fidelity"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Positive feedback causes outputs to swing rapidly to supply rails."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "Which parameter is most affected by frequency in feedback systems?",
+                    "choices": [
+                      "Resistor value",
+                      "Output voltage",
+                      "Amplifier gain",
+                      "Feedback factor"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Gain and phase shift vary significantly with frequency."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What type of circuit typically uses positive feedback?",
+                    "choices": [
+                      "Low-pass filters",
+                      "Oscillators",
+                      "Linear amplifiers",
+                      "Differential pairs"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Oscillators rely on positive feedback for sustained signals."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "Gain with feedback is generally:",
+                    "choices": [
+                      "Higher than open-loop gain",
+                      "Lower than open-loop gain",
+                      "Equal to the input signal",
+                      "Unpredictable"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Feedback reduces gain for better control and stability."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "When does a system become an oscillator?",
+                    "choices": [
+                      "When phase margin increases",
+                      "When βA < 1",
+                      "When gain and phase shift meet Barkhausen’s conditions",
+                      "When input is grounded"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "The Barkhausen criterion defines conditions for oscillation."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What does the term “loop gain” refer to?",
+                    "choices": [
+                      "Amplifier’s bandwidth",
+                      "Product of gain and feedback factor",
+                      "Power delivered to load",
+                      "Total circuit resistance"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Loop gain = Aβ; critical in feedback stability analysis."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What is meant by gain margin?",
+                    "choices": [
+                      "The minimum feedback voltage",
+                      "Extra gain allowed before instability",
+                      "Gain with maximum distortion",
+                      "Noise suppression level"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Gain margin shows how far system is from instability."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "Phase margin measures:",
+                    "choices": [
+                      "Frequency of the amplifier",
+                      "Input resistance",
+                      "Phase distance from instability",
+                      "Amount of voltage fed back"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Phase margin quantifies how close the phase is to 180°."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What occurs if phase shift reaches 180° while loop gain > 1?",
+                    "choices": [
+                      "Stability improves",
+                      "Oscillation starts",
+                      "Gain becomes 0",
+                      "Output drops to zero"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "This is the classic scenario for self-sustaining oscillation."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "Which feedback connection uses voltage in parallel?",
+                    "choices": [
+                      "Voltage-series",
+                      "Voltage-shunt",
+                      "Current-series",
+                      "Current-shunt"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Voltage-shunt feeds voltage in parallel to input."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "How does negative feedback affect distortion?",
+                    "choices": [
+                      "Increases it",
+                      "Makes it constant",
+                      "Reduces it",
+                      "Has no effect"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Negative feedback linearizes the response, reducing distortion."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "In a stable feedback system, what is the ideal value of βA?",
+                    "choices": [
+                      "Greater than 10",
+                      "Equal to 1",
+                      "Just below 1",
+                      "Zero"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "βA should remain below 1 at 180° phase shift to ensure stability."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What happens if the amplifier gain is zero?",
+                    "choices": [
+                      "Loop gain increases",
+                      "Oscillation occurs",
+                      "No output signal",
+                      "Frequency response improves"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Without gain, the circuit cannot amplify any input."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What is the role of a mixer in a feedback amplifier?",
+                    "choices": [
+                      "Boost the output",
+                      "Reduce noise",
+                      "Combine input and feedback signals",
+                      "Control power supply"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "The mixer subtracts the feedback from the input to produce the actual input to the amplifier."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What does increased bandwidth imply in feedback circuits?",
+                    "choices": [
+                      "More oscillation",
+                      "Better noise performance",
+                      "Wider frequency response",
+                      "Less power"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Negative feedback improves the amplifier’s frequency range."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What can a Nyquist plot help designers avoid?",
+                    "choices": [
+                      "DC errors",
+                      "Overheating",
+                      "Instability at high frequencies",
+                      "Input bias"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "It reveals where gain and phase might combine to cause oscillation."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "When a feedback circuit becomes unstable, its behavior:",
+                    "choices": [
+                      "Stabilizes over time",
+                      "Remains unchanged",
+                      "Becomes unpredictable or oscillatory",
+                      "Improves fidelity"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Instability leads to unpredictable or sustained oscillations."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "Which real-world example demonstrates positive feedback?",
+                    "choices": [
+                      "LED dimming",
+                      "Thermostat regulation",
+                      "Microphone squeal near a speaker",
+                      "Battery charging"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Microphone feedback is classic positive feedback in action."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What determines the strength of feedback in a circuit?",
+                    "choices": [
+                      "Voltage gain",
+                      "Feedback resistor values",
+                      "Output capacitor",
+                      "Grounding configuration"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "The ratio of resistor values in the feedback network sets β."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "Why is a phase shift of 180° critical in feedback design?",
+                    "choices": [
+                      "It cancels distortion",
+                      "It aligns feedback with input",
+                      "It risks converting negative feedback into positive",
+                      "It increases gain"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "At 180°, negative feedback can flip into positive if not controlled."
+                  },
+                  {
+                    "topic": "Feedback Circuits",
+                    "question": "What happens to the gain-bandwidth product in negative feedback systems?",
+                    "choices": [
+                      "It remains constant",
+                      "It drops to zero",
+                      "It becomes infinite",
+                      "It increases linearly"
+                    ],
+                    "correctAnswerIndex": 0,
+                    "explanation": "GBW is a constant; as gain decreases, bandwidth increases."
+                  },
             // New questions for Oscillation Operation topic
-            {
-                topic: "Oscillation Operation",
-                question: "What is the defining characteristic of an oscillator?",
-                choices: [
-                    "It requires a continuous external input to generate an output.",
-                    "It generates a continuous output signal without external input.",
-                    "It primarily uses negative feedback for stability.",
-                    "It only produces square waves."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "Oscillators are described as 'self-sustained' circuits that produce a continuous output signal, unlike amplifiers which require an external input."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What type of feedback is essential for oscillator operation?",
-                choices: [
-                    "Negative feedback.",
-                    "Positive feedback.",
-                    "Current feedback.",
-                    "No feedback."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "Oscillators work by using positive feedback, where a portion of the output signal is fed back to the input in a way that reinforces the original signal, leading to sustained oscillations."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "According to the Barkhausen Criterion, what must the loop gain be for sustained oscillation?",
-                choices: [
-                    "Less than 1 ($|A\\beta|<1$)",
-                    "Equal to or greater than 1 ($|A\\beta|\\ge1$)",
-                    "Exactly 0",
-                    "Exactly 10"
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The first condition of the Barkhausen Criterion states that the magnitude of the loop gain (product of amplifier gain A and feedback factor $\\beta$) must be equal to or greater than 1."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What must be the total phase shift around the loop for sustained oscillation, according to the Barkhausen Criterion?",
-                choices: [
-                    "90°",
-                    "180°",
-                    "270°",
-                    "0° or a multiple of 360°"
-                ],
-                correctAnswerIndex: 3,
-                explanation: "The second condition of the Barkhausen Criterion requires the total phase shift around the feedback loop to be 0° or a multiple of 360° for positive feedback and sustained oscillation."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What happens if the loop gain ($A\\beta$) is greater than 1 in an oscillator circuit, even with initial noise?",
-                choices: [
-                    "The oscillation will quickly die out.",
-                    "The noise will be filtered out, and no oscillation will occur.",
-                    "The small noise gets amplified repeatedly, leading to steady-state oscillation.",
-                    "The circuit will become unstable but will not oscillate."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "If $|A\\beta| > 1$, even a small initial noise voltage is repeatedly amplified, building up until limited by circuit saturation, resulting in steady-state oscillation."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What is the formula for the overall gain with feedback ($A_f$) in a general feedback amplifier?",
-                choices: [
-                    "$A_f = A \\cdot (1 + A\\beta)$",
-                    "$A_f = A / (1 - A\\beta)$",
-                    "$A_f = A + A\\beta$",
-                    "$A_f = A \\cdot (A\\beta - 1)$"
-                ],
-                correctAnswerIndex: 1,
-                explanation: "This is the basic feedback amplifier formula, where A is the open-loop gain and $\\beta$ is the feedback factor. For positive feedback, the denominator becomes $1 - A\\beta$."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What is implied if the denominator $(1 - A\\beta)$ in the feedback gain formula becomes 0?",
-                choices: [
-                    "The overall gain with feedback ($A_f$) becomes 0.",
-                    "The overall gain with feedback ($A_f$) becomes infinite, implying oscillation.",
-                    "The circuit acts as a filter.",
-                    "The circuit becomes perfectly stable."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "If $A\\beta = 1$, the denominator is zero, making $A_f = \\infty$. This means even a tiny signal (like noise) can produce a large output, leading to oscillation."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "A phase-shift oscillator primarily generates what type of waveform?",
-                choices: [
-                    "Square wave",
-                    "Triangular wave",
-                    "Sinusoidal (sine wave)",
-                    "Sawtooth wave"
-                ],
-                correctAnswerIndex: 2,
-                explanation: "Phase-shift oscillators are specifically designed electronic circuits that generate a sinusoidal (sine wave) output."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What is the crucial component of the feedback network in a phase-shift oscillator that shifts the phase by 180 degrees?",
-                choices: [
-                    "Inductors only.",
-                    "Resistors and capacitors arranged in a ladder configuration.",
-                    "Diodes and transistors.",
-                    "Transformers."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The feedback network in a phase-shift oscillator consists of multiple RC (resistor-capacitor) stages, typically three, which collectively provide the necessary 180-degree phase shift."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "In a phase-shift oscillator, what is the total phase shift around the loop required for sustained oscillations, considering an inverting amplifier?",
-                choices: [
-                    "90 degrees",
-                    "180 degrees",
-                    "270 degrees",
-                    "360 degrees (or 0 degrees)"
-                ],
-                correctAnswerIndex: 3,
-                explanation: "The 180-degree phase shift from the RC network combined with the inherent 180-degree phase inversion of an inverting amplifier results in a total phase shift of 360 degrees (or 0 degrees), fulfilling the Barkhausen criterion."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What is the minimum gain requirement (A) for a basic phase-shift oscillator to sustain oscillations?",
-                choices: [
-                    "$A > 10$",
-                    "$A > 20$",
-                    "$A > 29$",
-                    "$A > 360$"
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The formula for a phase-shift oscillator often includes the condition that the amplifier's gain (A) must be greater than 29 to compensate for the attenuation of the RC phase-shift network."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What are the active components used in a FET Phase-Shift Oscillator?",
-                choices: [
-                    "Bipolar Junction Transistors (BJTs)",
-                    "Operational Amplifiers (Op-amps)",
-                    "Field-Effect Transistors (FETs)",
-                    "Diodes"
-                ],
-                correctAnswerIndex: 2,
-                explanation: "As the name suggests, a FET Phase-Shift Oscillator uses a Field-Effect Transistor as its active amplifying element."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "In a FET Phase-Shift Oscillator, how many identical RC stages typically form the feedback network to provide a 180-degree phase shift?",
-                choices: [
-                    "One",
-                    "Two",
-                    "Three",
-                    "Four"
-                ],
-                correctAnswerIndex: 2,
-                explanation: "Similar to general phase-shift oscillators, FET phase-shift oscillators typically use three cascaded RC stages to achieve the required 180-degree phase shift in the feedback path."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What parameter is crucial for calculating the magnitude of gain ($|A|$) for the FET amplifier in a FET phase-shift oscillator, as given by the formula $|A| = g_m R_L$?",
-                choices: [
-                    "Capacitance (C)",
-                    "Transconductance ($g_m$)",
-                    "Input Impedance ($Z_{in}$)",
-                    "Frequency (f)"
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The formula $|A| = g_m R_L$ directly uses transconductance ($g_m$), which represents how effectively the FET converts input voltage to output current, a key factor in its gain."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What is the primary advantage of using voltage-shunt feedback in a single transistor phase-shift oscillator (BJT)?",
-                choices: [
-                    "It simplifies the biasing circuit.",
-                    "It allows for higher input resistance.",
-                    "It is more suitable when the feedback network loads the input appreciably.",
-                    "It increases the oscillation frequency."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The document states that if a single transistor stage is desired, voltage-shunt feedback is more suitable because the feedback network is loaded appreciably by the relatively low input resistance ($h_{ie}$) of the transistor."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "How does an IC (Integrated Circuit) Phase-Shift Oscillator typically differ from transistor-based versions in terms of its active element?",
-                choices: [
-                    "It uses a single resistor.",
-                    "It uses an operational amplifier (op-amp).",
-                    "It uses an inductor.",
-                    "It uses multiple discrete transistors."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "IC Phase-Shift Oscillators commonly utilize an operational amplifier (op-amp) as the active amplifying element due to its high gain and input impedance."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What is a significant advantage of using an op-amp in an IC Phase-Shift Oscillator, related to loading effects?",
-                choices: [
-                    "It makes the circuit smaller.",
-                    "It reduces loading effects on the RC network due to high input impedance.",
-                    "It increases the power consumption.",
-                    "It simplifies the external power supply."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "Op-amps have very high input impedance, which minimizes the loading effect on the RC phase-shift network, allowing the network to function more ideally."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "Which type of oscillator uses a bridge circuit for frequency determination and is often viewed as a band-pass filter providing positive feedback?",
-                choices: [
-                    "Phase-Shift Oscillator",
-                    "Colpitts Oscillator",
-                    "Hartley Oscillator",
-                    "Wien Bridge Oscillator"
-                ],
-                correctAnswerIndex: 3,
-                explanation: "The Wien Bridge Oscillator specifically uses a Wien bridge circuit in its positive feedback loop and can be seen as a band-pass filter providing feedback to an amplifier."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "In a Wien Bridge Oscillator, what components typically form the frequency-selective feedback network?",
-                choices: [
-                    "Only inductors.",
-                    "A series RC circuit (high-pass) and a parallel RC circuit (low-pass).",
-                    "Only capacitors.",
-                    "Resistors in a voltage divider configuration."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The Wien Bridge Oscillator's feedback loop consists of a series $R_1C_1$ circuit (high-pass) and a parallel $R_2C_2$ circuit (low-pass), forming a frequency-dependent band-pass filter."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "If, in a Wien Bridge Oscillator, the values are $R_1 = R_2 = R$ and $C_1 = C_2 = C$, what is the simplified formula for the oscillator frequency ($f_o$)?",
-                choices: [
-                    "$f_o = 1 / (2\\pi RC)$",
-                    "$f_o = 1 / (2\\pi \\sqrt{LC})$",
-                    "$f_o = 1 / (RC)$",
-                    "$f_o = 2\\pi RC$"
-                ],
-                correctAnswerIndex: 0,
-                explanation: "When $R_1 = R_2 = R$ and $C_1 = C_2 = C$, the general formula for the Wien Bridge oscillator frequency simplifies to $f_o = 1 / (2\\pi RC)$."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "For a Wien Bridge Oscillator with $R_1=R_2=R$ and $C_1=C_2=C$, what ratio of $R_3$ to $R_4$ is required for oscillation to take place?",
-                choices: [
-                    "$R_3/R_4 < 1$",
-                    "$R_3/R_4 = 1$",
-                    "$R_3/R_4 > 2$",
-                    "$R_3/R_4 < 0.5$"
-                ],
-                correctAnswerIndex: 2,
-                explanation: "To ensure sufficient loop gain for oscillation in a simplified Wien Bridge circuit, the ratio of $R_3$ to $R_4$ must be greater than 2."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What is the key idea behind Tuned-Input, Tuned-Output Oscillator Circuits?",
-                choices: [
-                    "They use only resistive components to determine frequency.",
-                    "Their input and output sections are 'tuned' to control the overall oscillation frequency.",
-                    "They only produce square wave outputs.",
-                    "They operate without any feedback."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The document explains that in these circuits, the input and output sections are specifically designed to be 'tuned' to a particular frequency, thereby controlling the oscillation."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "According to the reactance element table, which oscillator type uses two capacitors ($X_1, X_2$) and one inductor ($X_3$)?",
-                choices: [
-                    "Hartley oscillator",
-                    "Colpitts oscillator",
-                    "Tuned input, tuned output",
-                    "Phase-shift oscillator"
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The table clearly indicates that the Colpitts oscillator configuration uses Capacitors (C) for $X_1$ and $X_2$, and an Inductor (L) for $X_3$."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "Which oscillator type uses two inductors ($X_1, X_2$) and one capacitor ($X_3$)?",
-                choices: [
-                    "Colpitts oscillator",
-                    "Hartley oscillator",
-                    "Wien Bridge oscillator",
-                    "UJT oscillator"
-                ],
-                correctAnswerIndex: 1,
-                explanation: "The table specifies that the Hartley oscillator configuration uses Inductors (L) for $X_1$ and $X_2$, and a Capacitor (C) for $X_3$."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What is the primary advantage of using a crystal oscillator compared to other types?",
-                choices: [
-                    "Simpler circuit design.",
-                    "Wider range of operating frequencies.",
-                    "Highly stable and accurate frequency output.",
-                    "Lower power consumption."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "Crystal oscillators are specifically noted for their 'excellent frequency stability and resistance to environmental changes,' making them ideal for precise timing applications."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What property of a quartz crystal is utilized in crystal oscillators to produce a highly stable frequency?",
-                choices: [
-                    "The Hall effect.",
-                    "The thermoelectric effect.",
-                    "The piezoelectric effect.",
-                    "The photoelectric effect."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The piezoelectric effect is the property of a crystal (like quartz) where mechanical stress produces an electrical potential, and vice versa, allowing it to vibrate at a precise frequency when voltage is applied."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "In the electrical equivalent circuit of a quartz crystal, what does the shunt capacitance ($C_M$) represent?",
-                choices: [
-                    "The inductance of the crystal.",
-                    "The resistance due to internal friction.",
-                    "The capacitance due to mechanical mounting of the crystal.",
-                    "The resonant frequency of the crystal."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The document explicitly states that $C_M$ represents the capacitance resulting from the physical mounting of the crystal."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What does a very high Q (quality factor) of a crystal indicate?",
-                choices: [
-                    "High power consumption.",
-                    "Significant crystal losses.",
-                    "Excellent frequency selectivity and low energy loss.",
-                    "Low resonant frequency."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "High Q values (typically 20,000 to $10^6$) for crystals signify very low internal losses, leading to highly selective resonance and stable oscillation."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "What type of waveform is typically generated by a Unijunction Transistor (UJT) relaxation oscillator at its emitter?",
-                choices: [
-                    "Sinusoidal wave.",
-                    "Square wave.",
-                    "Sawtooth voltage waveform.",
-                    "Random noise."
-                ],
-                correctAnswerIndex: 2,
-                explanation: "The document describes the signal at the emitter of a UJT oscillator as a 'sawtooth voltage waveform'."
-            },
-            {
-                topic: "Oscillation Operation",
-                question: "In a UJT oscillator, what happens when the emitter voltage ($V_E$) reaches the peak point voltage ($V_P$)?",
-                choices: [
-                    "The UJT turns OFF, and the capacitor starts charging.",
-                    "The UJT turns ON, causing the capacitor to discharge rapidly.",
-                    "The oscillation stops.",
-                    "The frequency of oscillation increases significantly."
-                ],
-                correctAnswerIndex: 1,
-                explanation: "When the emitter voltage reaches $V_P$, the UJT becomes conductive, which allows the timing capacitor ($C_T$) to discharge quickly, initiating the next cycle of oscillation."
-            },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is the condition required for self-sustained oscillation in a feedback amplifier?",
+                    "choices": [
+                      "Aβ = 10",
+                      "Aβ < 1",
+                      "Aβ = 0",
+                      "Aβ = 1"
+                    ],
+                    "correctAnswerIndex": 3,
+                    "explanation": "For sustained oscillations, the Barkhausen Criterion states that the loop gain ($A\beta$) must be equal to or greater than 1, and the total phase shift around the loop must be 0° or a multiple of 360°."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is the minimum phase shift required from the phase-shift network for oscillation to occur in an inverting amplifier configuration?",
+                    "choices": [
+                      "90 degrees",
+                      "180 degrees",
+                      "270 degrees",
+                      "360 degrees"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "A phase-shift oscillator uses a feedback network that provides a 180-degree phase shift. This combined with the 180-degree phase inversion of the inverting amplifier results in a total phase shift of 360 degrees, fulfilling the condition for sustained oscillations."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "A phase-shift oscillator typically uses how many RC sections in its phase-shift network?",
+                    "choices": [
+                      "One",
+                      "Two",
+                      "Three",
+                      "Four"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Phase-shift oscillators commonly employ three identical RC (resistor-capacitor) stages in their feedback network to achieve the necessary 180-degree phase shift."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What property of a quartz crystal is described by the piezoelectric effect?",
+                    "choices": [
+                      "Generating heat when voltage is applied",
+                      "Developing a potential difference under mechanical stress",
+                      "Changing resistance with frequency",
+                      "Emitting light under pressure"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "The piezoelectric effect is the property of certain crystals, like quartz, to generate an electrical potential when mechanical stress is applied, and vice-versa."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a series-resonant circuit containing a resistor, inductor, and capacitor, what happens at the resonant frequency?",
+                    "choices": [
+                      "The impedance of the circuit is maximum",
+                      "The current in the circuit is minimum",
+                      "The voltage across the inductor and capacitor are equal in magnitude but opposite in phase",
+                      "The circuit behaves like a low-pass filter"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "At series resonance, the inductive and capacitive reactances cancel each other out, leading to a very low impedance equal to the resistance (R)."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a parallel-resonant circuit, what happens to the total impedance at the resonant frequency?",
+                    "choices": [
+                      "It becomes zero",
+                      "It becomes purely capacitive",
+                      "It reaches a maximum value",
+                      "It equals the inductive reactance"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "At parallel resonance (or antiresonance), the crystal offers a very high impedance to the external circuit, making it suitable for rejecting specific frequencies or stabilizing voltage."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "At low frequencies in a Wien Bridge Oscillator, what is the impedance characteristic?",
+                    "choices": [
+                      "The series RC is low and the parallel RC is high",
+                      "The series and parallel RC network are both low",
+                      "The series and parallel RC network are both high",
+                      "The series RC is high and the parallel RC is low"
+                    ],
+                    "correctAnswerIndex": 3,
+                    "explanation": "The Wien Bridge Oscillator uses a series R1C1 (high-pass filter) and a parallel R2C2 (low-pass filter) circuit. At low frequencies, the series RC (high-pass) has high impedance, and the parallel RC (low-pass) has low impedance."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "The provided image shows a circuit diagram with a transistor and a feedback network containing two inductors and one capacitor. What type of oscillator is this?",
+                    "choices": [
+                      "Transistor Hartley Oscillator",
+                      "FET Hartley Oscillator",
+                      "Op-amp Colpitts Oscillator",
+                      "Basic Configuration of resonant Oscillator"
+                    ],
+                    "correctAnswerIndex": 0,
+                    "explanation": "A Hartley oscillator is characterized by a tank circuit consisting of two inductors (or a tapped inductor) and one capacitor, which determines its operating frequency. The image clearly shows a transistor as the active element."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a UJT oscillator, what is the role of the timing resistor RT and capacitor CT?",
+                    "choices": [
+                      "They regulate the UJT gain",
+                      "They determine the frequency of oscillation",
+                      "They increase the output voltage",
+                      "They filter noise from the waveform"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "The resistor RT and capacitor CT are the primary timing components in a UJT relaxation oscillator, controlling the charging and discharging cycle and thus setting the oscillation rate."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What does the Peak Point Voltage (VP) in a UJT oscillator represent?",
+                    "choices": [
+                      "The maximum voltage the UJT can handle",
+                      "The voltage across the capacitor when it is fully discharged",
+                      "The voltage at which the UJT turns ON and starts conducting",
+                      "The voltage across base B1 and B2 when the circuit is idle"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "In a UJT oscillator, the capacitor charges until its voltage reaches the peak point voltage (VP), at which point the UJT turns ON and rapidly discharges the capacitor."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is the fundamental principle that allows oscillators to generate an output signal without external input?",
+                    "choices": [
+                      "Negative feedback",
+                      "Positive feedback",
+                      "Zero feedback",
+                      "Voltage division"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Oscillators utilize positive feedback, which amplifies a small initial noise signal repeatedly until it reaches a steady-state oscillation."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What types of waveforms can an oscillator typically produce?",
+                    "choices": [
+                      "Only sinusoidal waves",
+                      "Only pulse/square waves",
+                      "Sinusoidal and pulse/square waves",
+                      "Triangular waves only"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Oscillators are capable of generating various types of continuous output signals, including smooth sinusoidal waves and abrupt pulse/square waves."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "According to the Barkhausen Criterion, besides loop gain, what is the other crucial condition for sustained oscillations?",
+                    "choices": [
+                      "The total phase shift around the loop must be 90°",
+                      "The total phase shift around the loop must be 180°",
+                      "The total phase shift around the loop must be 0° or a multiple of 360°",
+                      "The total phase shift around the loop must be 270°"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "For sustained oscillations, the Barkhausen Criterion states that the loop gain ($A\beta$) must be equal to or greater than 1, and the total phase shift around the loop must be 0° or a multiple of 360°."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "If the loop gain (Aβ) in a feedback circuit is exactly 1, what happens to the overall gain with feedback (Af)?",
+                    "choices": [
+                      "It becomes zero",
+                      "It becomes infinite",
+                      "It becomes less than 1",
+                      "It becomes undefined but not infinite"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "The formula for overall gain with feedback is $A_f = A / (1 - A\beta)$. If $A\beta = 1$, the denominator becomes 0, making $A_f$ theoretically infinite, meaning even a tiny signal can produce a large output."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is the primary output waveform generated by a phase-shift oscillator?",
+                    "choices": [
+                      "Square wave",
+                      "Triangular wave",
+                      "Sinusoidal wave",
+                      "Sawtooth wave"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "A phase-shift oscillator is an electronic circuit specifically designed to generate a sinusoidal (sine wave) output."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "Which components typically form the feedback network in a phase-shift oscillator?",
+                    "choices": [
+                      "Inductors and capacitors",
+                      "Resistors and inductors",
+                      "Resistors and capacitors",
+                      "Diodes and transistors"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "The feedback network of a phase-shift oscillator is typically composed of resistors and capacitors arranged in a ladder configuration to provide the necessary phase shift."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a FET Phase-Shift Oscillator, what is the purpose of bypassing the source resistor (RS) with a capacitor?",
+                    "choices": [
+                      "To decrease the gain at the oscillation frequency",
+                      "To improve gain at the oscillation frequency",
+                      "To block DC signals",
+                      "To introduce additional phase shift"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "A capacitor bypasses the source resistor in a common-source FET amplifier configuration to enhance the gain at the specific oscillation frequency."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is a key advantage of using an operational amplifier (op-amp) as the amplifier in an IC Phase-Shift Oscillator?",
+                    "choices": [
+                      "Lower input impedance",
+                      "Reduced loading effects on the RC network",
+                      "Requires more complex design",
+                      "Less stable operation"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Op-amps are preferred in IC phase-shift oscillators because they offer high input impedance, which minimizes the loading effects on the RC feedback network."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "Who developed the bridge circuit that is the basis for the Wien Bridge Oscillator?",
+                    "choices": [
+                      "Barkhausen",
+                      "Max Wien",
+                      "Colpitts",
+                      "Hartley"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "The Wien bridge circuit, which is used in the Wien Bridge Oscillator, was developed by Max Wien in 1891 to measure impedances."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "The Wien Bridge Oscillator can also be viewed as a band-pass filter providing positive feedback to what type of amplifier?",
+                    "choices": [
+                      "Negative gain amplifier",
+                      "Zero gain amplifier",
+                      "Positive gain amplifier",
+                      "Unity gain amplifier"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "The Wien Bridge Oscillator can be conceptualized as a band-pass filter that provides positive feedback to an amplifier with positive gain."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a Wien Bridge Oscillator, what kind of filter is formed by the series R1C1 circuit?",
+                    "choices": [
+                      "Low-pass filter",
+                      "Band-pass filter",
+                      "High-pass filter",
+                      "Band-stop filter"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "The Wien Bridge Oscillator's feedback loop includes a series R1C1 circuit, which functions as a high-pass filter."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is the equivalent capacitance (Ceq) in a Colpitts oscillator where C1 and C2 are connected in series?",
+                    "choices": [
+                      "C1 + C2",
+                      "C1 × C2",
+                      "(C1 x C2) / (C1 + C2)",
+                      "C1 / C2"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "In a Colpitts oscillator, the equivalent capacitance (Ceq) for series-connected capacitors C1 and C2 is calculated using the formula for capacitors in series."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is a major advantage of using an Op-amp based Colpitts Oscillator compared to a transistor-based one?",
+                    "choices": [
+                      "Lower gain",
+                      "Less stability",
+                      "Simpler design",
+                      "Higher susceptibility to temperature variations"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Op-amp-based Colpitts oscillators can sometimes be simpler to implement than their transistor-based counterparts due to the inherent advantages of op-amps. Op-amps also offer higher gain and better stability."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a Hartley oscillator, which reactive elements (X1, X2, X3) are typically inductors and which is a capacitor?",
+                    "choices": [
+                      "X1=C, X2=C, X3=L",
+                      "X1=L, X2=L, X3=C",
+                      "X1=L, X2=C, X3=L",
+                      "X1=C, X2=L, X3=C"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "The table of reactance elements for oscillator types indicates that a Hartley oscillator uses two inductors (L) as X1 and X2, and one capacitor (C) as X3."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is one of the disadvantages of a Transistor Hartley Oscillator regarding its frequency?",
+                    "choices": [
+                      "It is always perfectly stable.",
+                      "It cannot operate at high frequencies.",
+                      "The oscillation frequency can be affected by variations in component values and temperature.",
+                      "It requires no external components for frequency determination."
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "A disadvantage of the Transistor Hartley Oscillator is that its oscillation frequency can be susceptible to changes in component values and temperature variations."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What type of crystal is typically used in a crystal oscillator to produce a highly stable and accurate frequency?",
+                    "choices": [
+                      "Silicon",
+                      "Germanium",
+                      "Quartz",
+                      "Ceramic"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Crystal oscillators commonly use a piezoelectric crystal, such as quartz, which vibrates at a precise frequency when a voltage is applied, providing excellent stability."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "Why are crystal oscillators commonly used in applications requiring precise timing, such as communication transmitters and GPS systems?",
+                    "choices": [
+                      "Their low cost",
+                      "Their large size",
+                      "Their excellent frequency stability and resistance to environmental changes",
+                      "Their ability to generate various waveforms simultaneously"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Crystal oscillators are favored in high-precision timing applications due to their inherent frequency stability and resilience to environmental fluctuations."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In the electrical equivalent circuit of a quartz crystal, what does the inductor (L) and capacitor (C) represent?",
+                    "choices": [
+                      "Crystal voltage and current",
+                      "Crystal power and energy",
+                      "Crystal mass and compliance",
+                      "Crystal resistance and reactance"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "In the electrical equivalent circuit of a quartz crystal, the inductor L and capacitor C represent the electrical equivalents of the crystal's mechanical mass and compliance, respectively."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is the typical quality factor (Q) of an equivalent crystal, and what values can be achieved?",
+                    "choices": [
+                      "Typically 100; up to 1,000",
+                      "Typically 1,000; up to 10,000",
+                      "Typically 20,000; up to almost 10^6",
+                      "Typically 10^6; up to 10^7"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "Due to small internal losses, quartz crystals exhibit a very high quality factor (Q), typically around 20,000, and can achieve values close to 10^6."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a series-resonant crystal circuit, how is the crystal typically connected to ensure maximum feedback?",
+                    "choices": [
+                      "In parallel with the amplifier",
+                      "In series with the amplifier",
+                      "To provide maximum impedance",
+                      "In a way that its impedance is minimum at series resonance"
+                    ],
+                    "correctAnswerIndex": 3,
+                    "explanation": "In series-resonant circuits, the crystal's impedance is smallest at its series-resonant frequency, which maximizes positive feedback and oscillation."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a UJT oscillator, what happens to the capacitor CT when the emitter voltage reaches the peak point voltage (VP)?",
+                    "choices": [
+                      "It starts charging slowly.",
+                      "It discharges rapidly.",
+                      "It maintains its charge.",
+                      "It reverses its polarity."
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "When the emitter voltage reaches the peak point voltage (VP), the UJT turns ON, causing the capacitor CT to discharge quickly, and then the cycle repeats."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "If the value of the timing resistor RT or capacitor CT in a UJT oscillator is increased, what happens to the oscillation frequency?",
+                    "choices": [
+                      "It increases.",
+                      "It decreases.",
+                      "It remains the same.",
+                      "It becomes unstable."
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "A higher RT or CT value leads to a longer charging time for the capacitor, resulting in a slower charging cycle and thus a lower oscillation frequency."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is the primary characteristic of an oscillator as a 'self-sustained' circuit?",
+                    "choices": [
+                      "It requires continuous external input.",
+                      "It generates output without external input.",
+                      "It can only operate with negative feedback.",
+                      "It only produces unstable signals."
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Oscillators are described as 'self-sustained' because they generate their own output signal without needing a continuous external input."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What phenomenon is responsible for the initial build-up of steady-state oscillations in an oscillator circuit, even without a specific input signal?",
+                    "choices": [
+                      "External signal injection",
+                      "Internal circuit noise",
+                      "Power supply fluctuations",
+                      "Component aging"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Even without an external input, a small amount of internal noise always exists in a circuit. If the loop gain is greater than 1, this noise is amplified repeatedly, leading to the build-up of steady-state oscillations."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "The gain formula for a feedback amplifier is $A_f = A / (1 - A\beta)$. What does A represent in this formula?",
+                    "choices": [
+                      "Overall gain with feedback",
+                      "Feedback factor",
+                      "Open-loop gain of the amplifier",
+                      "Input voltage"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "In the feedback amplifier gain formula, 'A' represents the open-loop gain of the amplifier stage before feedback is applied."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a Phase-Shift Oscillator, the feedback network shifts the phase of the amplifier's output signal by 180 degrees. What is the inherent phase inversion of the inverting amplifier that complements this shift?",
+                    "choices": [
+                      "0 degrees",
+                      "90 degrees",
+                      "180 degrees",
+                      "360 degrees"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "An inverting amplifier inherently provides a 180-degree phase inversion. This, combined with the 180-degree phase shift from the RC network, ensures the total 360-degree phase shift required for oscillation."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "Which type of phase-shift oscillator uses a common-source FET amplifier configuration?",
+                    "choices": [
+                      "Transistor Phase-Shift Oscillator",
+                      "IC Phase-Shift Oscillator",
+                      "FET Phase-Shift Oscillator",
+                      "Wien Bridge Oscillator"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "The FET Phase-Shift Oscillator specifically utilizes a common-source FET amplifier configuration as its active element."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "When designing a FET phase-shift oscillator, the amplifier stage gain (A) should be selected to be somewhat larger than what minimum value to assure oscillator action?",
+                    "choices": [
+                      "1",
+                      "10",
+                      "29",
+                      "180"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "For a FET phase-shift oscillator, the amplifier gain (A) needs to be greater than 29 ($A > 29$) to ensure that the Barkhausen criterion for oscillation is met."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is a key consideration when using a transistor as the active element in a Transistor Phase-Shift Oscillator, regarding the feedback network?",
+                    "choices": [
+                      "The feedback network is unaffected by the transistor's input resistance.",
+                      "The feedback network is loaded appreciably by the transistor's low input resistance.",
+                      "The transistor's high input impedance improves the feedback.",
+                      "The feedback network requires no loading."
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Unlike op-amps, a transistor's relatively low input resistance ($h_{ie}$) can significantly load the feedback network in a transistor phase-shift oscillator."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is a significant advantage of using an Op-Amp based IC Colpitts Oscillator over transistor-based designs?",
+                    "choices": [
+                      "Lower gain.",
+                      "Reduced stability.",
+                      "Higher susceptibility to temperature changes.",
+                      "Simpler design due to higher gain and better stability."
+                    ],
+                    "correctAnswerIndex": 3,
+                    "explanation": "Op-amps provide higher gain and better stability, which simplifies the design of IC Colpitts oscillators compared to transistor versions."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is the main purpose of 'tuned-input, tuned-output' oscillator circuits?",
+                    "choices": [
+                      "To exclusively generate square waves.",
+                      "To control the overall oscillation frequency by tuning input and output sections.",
+                      "To operate without any feedback.",
+                      "To minimize power consumption regardless of frequency."
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Tuned-input, tuned-output oscillator circuits are designed such that their input and output sections are tuned to precisely control the oscillation frequency."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a Colpitts oscillator, the feedback network consists of which reactive elements according to the table provided?",
+                    "choices": [
+                      "Two inductors (L) and one capacitor (C)",
+                      "Two capacitors (C) and one inductor (L)",
+                      "Two resistors (R) and one capacitor (C)",
+                      "One inductor (L) and two resistors (R)"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "The table of reactance elements for oscillator types indicates that a Colpitts oscillator uses two capacitors (C) as X1 and X2, and one inductor (L) as X3."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "Which type of oscillator is characterized by having two inductors and one capacitor in its tank circuit?",
+                    "choices": [
+                      "Colpitts oscillator",
+                      "Wien Bridge oscillator",
+                      "Hartley oscillator",
+                      "Phase-shift oscillator"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "The Hartley oscillator is distinguished by its tank circuit, which comprises two inductors (or a tapped inductor) and a single capacitor."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What can affect the actual frequency of a Transistor Hartley Oscillator, even though a formula provides an approximation?",
+                    "choices": [
+                      "Only the resistor values",
+                      "Only the capacitor values",
+                      "Parasitic capacitances and mutual inductance",
+                      "The supply voltage only"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "While a formula gives an approximate frequency, parasitic capacitances and mutual inductance can influence the actual operating frequency of a Transistor Hartley Oscillator."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "The piezoelectric effect in a quartz crystal means that a voltage applied across one set of faces will cause what?",
+                    "choices": [
+                      "A change in its chemical composition",
+                      "Mechanical distortion in the crystal shape",
+                      "Emission of light",
+                      "An increase in its temperature"
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "The piezoelectric effect is a bidirectional property: applying a voltage across a crystal's faces causes a physical deformation, and conversely, mechanical stress generates a voltage."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What does the shunt capacitance (CM) represent in the electrical equivalent circuit of a quartz crystal?",
+                    "choices": [
+                      "The capacitance due to internal friction.",
+                      "The capacitance due to mechanical mounting of the crystal.",
+                      "The capacitance of the lead wires.",
+                      "The capacitance of the external circuit."
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "In the equivalent circuit of a quartz crystal, CM specifically represents the capacitance introduced by the mechanical mounting of the crystal."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "In a series-resonant crystal circuit, the series-resonant impedance is very low and approximately equal to what?",
+                    "choices": [
+                      "Inductive reactance",
+                      "Capacitive reactance",
+                      "Resistance (R)",
+                      "Infinite impedance"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "At series resonance, the reactances cancel, and the crystal's impedance becomes very low, equivalent to its internal resistance (R)."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is the characteristic of the crystal at its parallel resonance (antiresonance) frequency?",
+                    "choices": [
+                      "It offers a very low impedance to the external circuit.",
+                      "It offers a very high impedance to the external circuit.",
+                      "It becomes purely resistive.",
+                      "It acts as a short circuit."
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "At its parallel resonance or antiresonance, the crystal presents a very high impedance to the external circuit."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "Why are series resonance circuits useful for passing signals at a specific frequency and blocking others?",
+                    "choices": [
+                      "They provide high impedance at resonance.",
+                      "They provide high current and low impedance at resonance.",
+                      "They act as band-stop filters.",
+                      "They are ideal for voltage stabilization."
+                    ],
+                    "correctAnswerIndex": 1,
+                    "explanation": "Series resonance circuits are characterized by low impedance and high current at their resonant frequency, allowing them to pass signals at that specific frequency effectively."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What type of oscillator uses a Unijunction Transistor (UJT) and operates based on the charging and discharging of a capacitor?",
+                    "choices": [
+                      "Hartley Oscillator",
+                      "Colpitts Oscillator",
+                      "Unijunction Oscillator (UJT relaxation oscillator)",
+                      "Wien Bridge Oscillator"
+                    ],
+                    "correctAnswerIndex": 2,
+                    "explanation": "The Unijunction Oscillator, specifically a UJT relaxation oscillator, generates periodic signals through the charging and discharging cycle of a capacitor triggered by the UJT's unique switching action."
+                  },
+                  {
+                    "topic": "Oscillation Operation",
+                    "question": "What is typically the output waveform of an op-amp crystal oscillator operating in series-resonant mode with high gain?",
+                    "choices": [
+                      "Sinusoidal wave",
+                      "Triangular wave",
+                      "Sawtooth wave",
+                      "Square-wave signal"
+                    ],
+                    "correctAnswerIndex": 3,
+                    "explanation": "When an op-amp based crystal oscillator operates in series-resonant mode with high gain, it tends to produce a square-wave output signal."
+                  },
             // Active Filters questions
             {
                 topic: "Active Filters",
