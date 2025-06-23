@@ -337,6 +337,186 @@
     <script>
         // Data structure for all quiz questions
         const allQuestions = [
+              {
+                "topic": "Quiz 4",
+                "question": "Which of the following is an ideal characteristic of an operational amplifier?",
+                "choices": [
+                  "Finite input impedance",
+                  "Zero output impedance",
+                  "Limited bandwidth",
+                  "Non-zero input bias current"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "An ideal operational amplifier is a theoretical model that possesses several perfect characteristics to simplify analysis. One key ideal characteristic is **zero output impedance**. This means that the op-amp can deliver any amount of current to a load without its output voltage dropping. Other ideal characteristics include infinite input impedance (drawing no current from the source), infinite open-loop gain, infinite bandwidth (amplifying all frequencies equally), and zero input offset voltage and bias current."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "What is the typical value of input bias current in a non-ideal operational amplifier?",
+                "choices": [
+                  "Microamperes to picoamperes",
+                  "Zero amperes",
+                  "Several amperes",
+                  "Infinite"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "Unlike an ideal op-amp, a **non-ideal operational amplifier** requires a small amount of current to flow into its input terminals to properly bias the internal transistors. This current is known as the **input bias current**. While ideally zero, in real-world op-amps, it is a very small but non-zero value, typically ranging from **microamperes (µA) down to picoamperes (pA)**, depending on the op-amp technology (e.g., BJT-based op-amps generally have higher bias currents than JFET or CMOS-based op-amps."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "Why is the bandwidth of an operational amplifier important in circuit design?",
+                "choices": [
+                  "It determines the maximum output voltage",
+                  "It defines the slew rate",
+                  "It controls the input impedance",
+                  "It limits the frequency range over which the op-amp can amplify signals effectively"
+                ],
+                "correctAnswerIndex": 3,
+                "explanation": "The **bandwidth of an operational amplifier** is a crucial parameter because it dictates the range of frequencies over which the op-amp can effectively amplify a signal without significant attenuation. An op-amp's gain typically starts to roll off at higher frequencies. If the signal's frequency component falls outside the op-amp's bandwidth, the op-amp will not be able to amplify it correctly, leading to distorted or attenuated output. Therefore, matching the op-amp's bandwidth to the signal's frequency content is essential for accurate amplification."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "Which configuration of an op-amp provides a voltage gain of approximately 1 and does not invert the input signal?",
+                "choices": [
+                  "Inverting amplifier",
+                  "Non-inverting amplifier",
+                  "Summing amplifier",
+                  "Integrator"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "The **non-inverting amplifier** configuration, when specifically set up with its output directly connected to its inverting input and the input signal applied to the non-inverting input, acts as a **voltage follower (or unity-gain buffer)**. In this specific setup, the output voltage closely tracks the input voltage, resulting in a voltage gain of approximately 1. Crucially, it also maintains the phase of the input signal (i.e., it does not invert it), making it useful for impedance buffering."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "What happens to the bandwidth of an op-amp as the closed-loop gain increases?",
+                "choices": [
+                  "Bandwidth decreases",
+                  "Bandwidth increases",
+                  "Bandwidth remains constant",
+                  "Bandwidth becomes infinite"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "This phenomenon is explained by the **Gain-Bandwidth Product (GBW or GBP)**, a fundamental concept for op-amps. For a given op-amp, the product of its closed-loop gain and its corresponding bandwidth is approximately constant. This means there's an inverse relationship: if you increase the closed-loop gain, the bandwidth you can achieve with that op-amp will proportionally **decrease**. Conversely, reducing the gain allows for a wider bandwidth."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "Which op-amp parameter is most critical when designing a high-speed amplifier for fast pulse signals?",
+                "choices": [
+                  "Slew rate",
+                  "Input impedance",
+                  "Input bias current",
+                  "Output impedance"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "When dealing with **fast pulse signals** or rapidly changing input voltages, the **slew rate** of an op-amp becomes the most critical parameter. Slew rate defines the maximum rate at which the op-amp's output voltage can change per unit of time (typically V/µs). If the input signal changes faster than the op-amp's slew rate, the output will be distorted (slew-rate limited), resulting in a triangular or trapezoidal output even for a square wave input, as the op-amp cannot keep up with the rapid voltage transitions."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "When choosing an op-amp for a precision integrator circuit, which characteristic should be prioritized?",
+                "choices": [
+                  "High input bias current",
+                  "Low slew rate",
+                  "Low input offset voltage and bias current",
+                  "Low gain-bandwidth product"
+                ],
+                "correctAnswerIndex": 2,
+                "explanation": "An **integrator circuit** generates an output voltage proportional to the time integral of its input voltage. For **precision integrators**, errors due to the op-amp itself can significantly accumulate over time. Therefore, minimizing these errors is crucial. **Low input offset voltage** ensures that there is no unwanted DC voltage at the input that would cause a false integration. **Low input bias current** is vital because these currents flow through the integrating capacitor, causing a steady charge accumulation (drift) that can saturate the output over time, even with no input signal. Therefore, selecting an op-amp with very low input offset voltage and bias current (e.g., JFET or CMOS input op-amps) is paramount for precision integration."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "What is the primary purpose of negative feedback in control systems?",
+                "choices": [
+                  "Reduce sensitivity to parameter variations",
+                  "Increase overall gain",
+                  "Maximize steady-state error",
+                  "Simplify system design"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "In **control systems**, negative feedback is a fundamental concept where a portion of the output is fed back and subtracted from the input, creating an error signal that drives the system. Its primary purpose is to **reduce sensitivity to parameter variations** (e.g., changes in component values or environmental conditions). By continuously comparing the actual output to the desired output and making adjustments, negative feedback inherently makes the system more robust, stable, and less prone to external disturbances, while also improving linearity and reducing distortion, often at the cost of reduced overall gain."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "Which stability criterion uses polynomial coefficients without root calculation?",
+                "choices": [
+                  "Nyquist",
+                  "Bode",
+                  "Routh-Hurwitz",
+                  "Root Locus"
+                ],
+                "correctAnswerIndex": 2,
+                "explanation": "The **Routh-Hurwitz criterion** is an algebraic method used to determine the stability of a linear time-invariant (LTI) control system. It achieves this by examining the signs of the elements in a special table (the Routh array) constructed directly from the coefficients of the system's characteristic polynomial (the denominator of the closed-loop transfer function). Unlike Nyquist, Bode, or Root Locus, it **does not require the explicit calculation of the roots** of the characteristic equation, only checks if all roots have negative real parts (indicating stability)."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "Which compensator improves transient response by adding phase lead?",
+                "choices": [
+                  "Lag",
+                  "PID",
+                  "Lead",
+                  "Notch"
+                ],
+                "correctAnswerIndex": 2,
+                "explanation": "A **lead compensator** (also known as a phase-lead compensator) is a type of controller used in feedback systems to improve their performance, particularly the **transient response**. It achieves this by adding a phase lead to the system's frequency response at relevant frequencies. This added phase lead effectively shifts the phase margin to a higher frequency, which generally translates to a faster response time, reduced overshoot, and improved damping in the closed-loop system."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "For disturbance rejection in a PID controller, which term is most critical?",
+                "choices": [
+                  "Proportional",
+                  "Integral",
+                  "Derivative",
+                  "Filter"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "The **Proportional-Integral-Derivative (PID) controller** is widely used in industrial control systems. For **disturbance rejection** and the elimination of steady-state errors, the **integral (I) term** is the most critical. The integral term accumulates the error over time. If a disturbance causes a persistent error, the integral term will grow, eventually driving the controller output to a value that precisely counteracts the disturbance, thereby eliminating the steady-state error and bringing the system back to its desired setpoint."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "What does the Routh-Hurwitz criterion directly determine?",
+                "choices": [
+                  "Transient response",
+                  "Absolute stability",
+                  "Steady-state error",
+                  "Frequency response"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "The primary objective of the **Routh-Hurwitz criterion** is to determine the **absolute stability** of a linear time-invariant (LTI) system. It tells us whether all the roots of the system's characteristic equation lie in the left half of the s-plane (which is the condition for stability). It gives a definitive 'yes' or 'no' answer to stability without quantifying 'how stable' the system is (which is done by concepts like gain margin and phase margin)."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "To reduce steady-state error for a ramp input, use:",
+                "choices": [
+                  "Proportional control",
+                  "Derivative control",
+                  "Integral control",
+                  "Lead compensator"
+                ],
+                "correctAnswerIndex": 2,
+                "explanation": "For inputs that persist over time, such as a **ramp input** (where the desired output increases linearly with time), a simple proportional controller will always result in a steady-state error. The **integral control** action is specifically designed to eliminate steady-state errors. By integrating the error over time, it ensures that even a small, persistent error will eventually lead to a significant control action that drives the error to zero for ramp inputs and other persistent disturbances."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "A system oscillates at 1 kHz. Which compensator is most effective?",
+                "choices": [
+                  "Lag",
+                  "Lead",
+                  "PID",
+                  "Notch"
+                ],
+                "correctAnswerIndex": 3,
+                "explanation": "When a system exhibits unwanted oscillations at a very specific, known frequency (like 1 kHz in this case), a **notch filter (or notch compensator)** is the most effective solution. A notch filter is designed to provide significant attenuation (a 'notch' or dip) in the frequency response precisely at the oscillating frequency, thereby reducing the gain at that frequency and suppressing the unwanted oscillation without significantly affecting other desirable frequency components of the signal."
+              },
+              {
+                "topic": "Quiz 4",
+                "question": "Which PID component improves damping?",
+                "choices": [
+                  "Proportional",
+                  "Integral",
+                  "Derivative",
+                  "All equally"
+                ],
+                "correctAnswerIndex": 2,
+                "explanation": "In a PID controller, the **derivative (D) component** is primarily responsible for **improving damping** and reducing overshoot in the system's response. The derivative term reacts to the *rate of change* of the error. If the error is changing rapidly (e.g., as the system approaches the setpoint quickly), the derivative term provides a strong opposing force, effectively acting as a 'brake.' This anticipatory action helps to slow down the system's approach to the setpoint, thereby reducing overshoot and making the response more stable and better damped."
+              },
             {
                 topic: "Operational Amplifiers",
                 question: "What is an operational amplifier (op-amp) primarily described as?",
