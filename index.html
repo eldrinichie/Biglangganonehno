@@ -709,7 +709,7 @@
                       "Amplifier oscillation"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Negative feedback stabilizes gain and improves linearity."
+                    "explanation": "Negative feedback works by feeding a portion of the output signal back to the input in an 'out-of-phase' manner. This subtractive interaction reduces the overall gain of the amplifier but in turn significantly improves its stability (less prone to unwanted oscillations) and linearity (output is a more accurate scaled version of the input, reducing distortion). It essentially helps the amplifier correct its own errors."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -721,7 +721,7 @@
                       "Fluctuates randomly"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Negative feedback reduces overall voltage gain."
+                    "explanation": "When negative feedback is applied, a fraction of the output signal is subtracted from the input signal. This effectively reduces the overall signal that the amplifier processes, leading to a decrease in the overall voltage gain. While gain is reduced, this trade-off is often acceptable or even desirable for the significant improvements in other performance metrics like stability and bandwidth."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -733,7 +733,7 @@
                       "Better noise performance"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "Positive feedback tends to drive systems into oscillation."
+                    "explanation": "Positive feedback occurs when a portion of the output signal is fed back to the input in an 'in-phase' manner, meaning it adds to the input signal. This additive effect can quickly lead to a runaway condition where the output grows uncontrollably until it hits the power supply rails (saturation) or, more commonly, causes sustained oscillations. This characteristic is precisely why positive feedback is intentionally used in oscillator circuits to generate repetitive waveforms."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -745,7 +745,7 @@
                       "To amplify the input"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "β defines how much output is returned to the input."
+                    "explanation": "The feedback factor (β, typically a value between 0 and 1) quantifies the fraction of the output signal that is returned to the input. It's determined by the components in the feedback network (e.g., resistors in a voltage divider). A higher β means a larger portion of the output is fed back, leading to stronger feedback effects."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -757,7 +757,7 @@
                       "Current-series"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "Voltage-series feedback has these impedance effects."
+                    "explanation": "Voltage-series feedback (also known as series-shunt feedback) refers to the way the feedback signal is sampled (voltage, in parallel with the output) and how it's mixed with the input (in series with the input voltage source). This configuration is known to effectively increase the input impedance (making the amplifier draw less current from the source) and decrease the output impedance (making the amplifier better at driving a load)."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -769,7 +769,7 @@
                       "Stability across frequencies"
                     ],
                     "correctAnswerIndex": 3,
-                    "explanation": "Nyquist criterion evaluates feedback amplifier stability."
+                    "explanation": "The Nyquist criterion is a powerful graphical tool used to analyze the stability of a feedback system over its entire operating frequency range. By plotting the open-loop gain (Aβ) in the complex plane, it helps determine if the system will remain stable (i.e., not oscillate) under closed-loop conditions, particularly revealing potential instability at frequencies where phase shifts accumulate."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -781,7 +781,7 @@
                       "Zero phase shift"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "Enclosing the –1 point indicates instability."
+                    "explanation": "According to the Nyquist criterion, a feedback system becomes unstable if the Nyquist plot of its open-loop transfer function (Aβ) encircles the critical point (-1, 0) in the complex plane. This point represents a condition where the loop gain has a magnitude of 1 and a phase shift of -180 degrees (or +180 degrees), which are the conditions for sustained oscillation (Barkhausen criterion)."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -793,7 +793,7 @@
                       "Open loop gain"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "If loop gain is 1 at a 180° phase shift (–1 point), oscillation occurs."
+                    "explanation": "The -1 point (or more precisely, the point where the magnitude is 1 and the phase is -180 degrees) in a Nyquist plot is the 'critical stability point.' If the loop gain Aβ passes through or encircles this point, it means that at some frequency, the feedback signal is exactly in phase with the input (due to a 180° phase shift in the loop) and has a gain equal to or greater than the input, leading to self-sustaining oscillation and instability."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -805,7 +805,7 @@
                       "Power feedback"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Voltage-shunt feedback decreases both impedances."
+                    "explanation": "Voltage-shunt feedback (also known as shunt-shunt feedback) involves sampling the output voltage (in parallel) and mixing the feedback current in parallel with the input current. This configuration is characterized by its ability to decrease both the input impedance (making it suitable for current sources) and the output impedance (making it good for driving loads)."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -817,7 +817,7 @@
                       "It improves signal fidelity"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "Positive feedback causes outputs to swing rapidly to supply rails."
+                    "explanation": "With strong positive feedback, any small fluctuation at the input (even noise) is amplified and fed back in phase, rapidly driving the output towards either the positive or negative power supply rail. This phenomenon is called saturation, where the output voltage is clipped at the power supply limits, and the op-amp ceases to operate in its linear region."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -829,7 +829,7 @@
                       "Feedback factor"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Gain and phase shift vary significantly with frequency."
+                    "explanation": "While resistor values and feedback factor (β) are typically constant or slowly varying with frequency, the amplifier's open-loop gain (A) and its associated phase shift are highly dependent on frequency. This frequency dependence of gain and phase is crucial in determining the stability of a feedback system, especially at higher frequencies where parasitic capacitances and inductances become significant."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -841,7 +841,7 @@
                       "Differential pairs"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "Oscillators rely on positive feedback for sustained signals."
+                    "explanation": "Oscillators are circuits specifically designed to generate repetitive waveforms without an external input signal. They achieve this by intentionally using positive feedback to create a self-sustaining loop where the amplified output is fed back in phase to reinforce the input, leading to continuous oscillation at a specific frequency."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -853,7 +853,7 @@
                       "Unpredictable"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "Feedback reduces gain for better control and stability."
+                    "explanation": "A fundamental characteristic of negative feedback is that it reduces the overall closed-loop gain of the amplifier compared to its open-loop gain (gain without feedback). This reduction in gain is a trade-off for improved stability, linearity, bandwidth, and predictable performance."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -865,7 +865,7 @@
                       "When input is grounded"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "The Barkhausen criterion defines conditions for oscillation."
+                    "explanation": "A system becomes an oscillator when it satisfies the Barkhausen stability criterion: 1) The loop gain (Aβ) must have a magnitude equal to or greater than 1, and 2) The total phase shift around the feedback loop must be 0 degrees or a multiple of 360 degrees (which is equivalent to 180 degrees if the amplifier provides an initial 180-degree shift and the feedback network provides another 180-degree shift). When these conditions are met, the feedback signal reinforces itself, leading to sustained oscillations."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -877,7 +877,7 @@
                       "Total circuit resistance"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "Loop gain = Aβ; critical in feedback stability analysis."
+                    "explanation": "Loop gain (Aβ) is a crucial parameter in feedback system analysis. It represents the product of the amplifier's open-loop gain (A) and the feedback factor (β). It effectively tells us how much a signal is amplified as it travels through the amplifier and then back through the feedback network to the input. Loop gain is critical for determining system stability."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -889,7 +889,7 @@
                       "Noise suppression level"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "Gain margin shows how far system is from instability."
+                    "explanation": "Gain margin is a measure of how much the loop gain (Aβ) can increase at the frequency where the phase shift is -180 degrees (or 0 degrees for positive feedback) before the system becomes unstable. A positive gain margin indicates stability, while a negative gain margin indicates instability. It essentially tells you how 'robust' your stability is against gain variations."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -901,7 +901,7 @@
                       "Amount of voltage fed back"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Phase margin quantifies how close the phase is to 180°."
+                    "explanation": "Phase margin is a measure of how much additional phase shift can occur at the frequency where the loop gain (Aβ) is equal to 1, before the system becomes unstable (i.e., before the total phase shift reaches -180 degrees). A positive phase margin (typically 45-60 degrees for good stability) indicates a stable system, signifying how far the system's phase response is from the critical instability point."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -913,7 +913,7 @@
                       "Output drops to zero"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "This is the classic scenario for self-sustaining oscillation."
+                    "explanation": "This is precisely the condition for oscillation, as defined by the Barkhausen criterion. If the total phase shift around the feedback loop reaches 180° (meaning the feedback becomes positive feedback) at a frequency where the loop gain (Aβ) is greater than 1, the feedback signal will reinforce itself and grow continuously, leading to sustained oscillations."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -925,7 +925,7 @@
                       "Current-shunt"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "Voltage-shunt feeds voltage in parallel to input."
+                    "explanation": "In voltage-shunt feedback, the output voltage is sampled in parallel with the load (hence 'voltage') and the feedback signal is applied in parallel (shunt) to the input of the amplifier. This configuration is often used to stabilize the output voltage and is known for decreasing both input and output impedance."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -937,7 +937,7 @@
                       "Has no effect"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Negative feedback linearizes the response, reducing distortion."
+                    "explanation": "One of the most significant advantages of negative feedback is its ability to reduce non-linear distortion in amplifiers. By constantly comparing the output with the input and feeding back the error, the feedback loop effectively linearizes the amplifier's response, making the output a more faithful reproduction of the input, even if the amplifier itself has some inherent non-linearities."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -949,7 +949,7 @@
                       "Zero"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "βA should remain below 1 at 180° phase shift to ensure stability."
+                    "explanation": "For a stable negative feedback system, it is crucial that the loop gain (Aβ) remains less than 1 (specifically, its magnitude should be less than 1) at the frequency where the total phase shift around the loop reaches 180 degrees. If Aβ is equal to or greater than 1 at this critical phase, the system will oscillate. Therefore, a loop gain just below 1 at the 180° phase shift point ensures stability while still providing the benefits of feedback."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -961,7 +961,7 @@
                       "Frequency response improves"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Without gain, the circuit cannot amplify any input."
+                    "explanation": "If the amplifier gain (A) is zero, then regardless of the input signal or the feedback network, the amplifier cannot amplify anything. Consequently, there will be no output signal. In a feedback loop, if A is zero, then the loop gain (Aβ) will also be zero, meaning no feedback action can take place."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -973,7 +973,7 @@
                       "Control power supply"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "The mixer subtracts the feedback from the input to produce the actual input to the amplifier."
+                    "explanation": "In the context of a feedback amplifier, the 'mixer' (or summing junction) is the point where the input signal and the feedback signal are combined. For negative feedback, this is typically a subtractive process, where the feedback signal is subtracted from the input signal to produce an 'error' signal that the amplifier then amplifies. This error signal drives the amplifier to reduce the difference between the input and the scaled output."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -985,7 +985,7 @@
                       "Less power"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Negative feedback improves the amplifier’s frequency range."
+                    "explanation": "One of the key advantages of negative feedback is its ability to extend the bandwidth of an amplifier. While it reduces gain, it distributes that gain over a wider range of frequencies. This means the amplifier can effectively process a broader spectrum of input signals without significant attenuation, leading to a wider frequency response and better signal fidelity for complex waveforms."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -997,7 +997,7 @@
                       "Input bias"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "It reveals where gain and phase might combine to cause oscillation."
+                    "explanation": "The Nyquist plot is particularly useful for assessing stability at high frequencies. At these frequencies, parasitic capacitances and inductances, along with inherent amplifier characteristics, can introduce additional phase shifts. A Nyquist plot allows designers to visualize the phase and gain characteristics of the loop gain at various frequencies, helping them identify and mitigate conditions that could lead to oscillation (instability) at high frequencies."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -1009,19 +1009,19 @@
                       "Improves fidelity"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Instability leads to unpredictable or sustained oscillations."
+                    "explanation": "An unstable feedback circuit will typically exhibit unpredictable behavior, most commonly manifesting as sustained oscillations. Instead of providing a stable amplified output, it will generate unwanted, self-sustaining waveforms, often unrelated to the intended input signal. In extreme cases, it might even 'latch up' into saturation."
                   },
                   {
                     "topic": "Feedback Circuits",
                     "question": "Which real-world example demonstrates positive feedback?",
                     "choices": [
                       "LED dimming",
-                      "Thermostat regulation",
+                      "Therm-ostat regulation",
                       "Microphone squeal near a speaker",
                       "Battery charging"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "Microphone feedback is classic positive feedback in action."
+                    "explanation": "The classic example of positive feedback in action is the 'microphone squeal' or acoustic feedback. When a microphone picks up sound from a speaker that is amplifying its own output, and this amplified sound is fed back into the microphone, it creates a runaway loop. The signal quickly builds up, causing a loud, sustained, and often high-pitched oscillation (squeal)."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -1033,7 +1033,7 @@
                       "Grounding configuration"
                     ],
                     "correctAnswerIndex": 1,
-                    "explanation": "The ratio of resistor values in the feedback network sets β."
+                    "explanation": "The strength of feedback, represented by the feedback factor (β), is primarily determined by the values of the components in the feedback network. For example, in a common voltage divider feedback network using resistors, the ratio of these resistor values directly sets how much of the output voltage is fed back to the input, thus controlling the feedback strength."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -1045,7 +1045,7 @@
                       "It increases gain"
                     ],
                     "correctAnswerIndex": 2,
-                    "explanation": "At 180°, negative feedback can flip into positive if not controlled."
+                    "explanation": "In a negative feedback system, the intention is for the feedback signal to subtract from the input (i.e., be 180° out of phase). However, if additional phase shifts (beyond the intended 180° from the amplifier) accumulate in the feedback loop, and the total phase shift around the loop approaches 360° (or 0°, equivalent to a further 180°), the negative feedback effectively turns into positive feedback. If this occurs when the loop gain is also 1 or more, it will lead to instability and oscillation."
                   },
                   {
                     "topic": "Feedback Circuits",
@@ -1057,7 +1057,7 @@
                       "It increases linearly"
                     ],
                     "correctAnswerIndex": 0,
-                    "explanation": "GBW is a constant; as gain decreases, bandwidth increases."
+                    "explanation": "For many feedback amplifiers, particularly op-amps, the gain-bandwidth product (GBW) is a constant. This means that as negative feedback reduces the gain of the amplifier, its bandwidth increases proportionally, such that their product remains roughly constant. This illustrates a fundamental trade-off: you can have high gain or high bandwidth, but not both simultaneously without sacrificing the other."
                   },
             // New questions for Oscillation Operation topic
                   {
