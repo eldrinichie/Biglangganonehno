@@ -7,10 +7,9 @@
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- MathJax CDN for LaTeX rendering - Removed 'async' to ensure it loads before script execution -->
-    <script type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -2507,10 +2506,10 @@
 
         let currentQuestionIndex = 0;
         let score = 0;
-        let questions = []; // Questions for the currently active topic
+        let questions = [];
         let currentTopic = "";
-        let answerSelectedForCurrentQuestion = false; // New flag to track answer selection
-
+        let answerSelectedForCurrentQuestion = false;
+        
         // Get DOM elements
         const tabContainer = document.getElementById('tab-container');
         const quizUI = document.getElementById('quiz-ui');
@@ -2520,16 +2519,16 @@
         const progressBar = document.getElementById('progress-bar');
         const questionText = document.getElementById('question-text');
         const answerChoicesDiv = document.getElementById('answer-choices');
-        const explanationTextDiv = document.getElementById('explanation-text'); // New explanation div
+        const explanationTextDiv = document.getElementById('explanation-text');
         const nextButton = document.getElementById('next-button');
         const finalScoreDisplay = document.getElementById('final-score');
         const restartButton = document.getElementById('restart-button');
-
+        
         // Function to set up tabs
         function setupTabs() {
-            const topics = [...new Set(allQuestions.map(q => q.topic))]; // Get unique topics
-            tabContainer.innerHTML = ''; // Clear existing tabs
-
+            const topics = [...new Set(allQuestions.map(q => q.topic))];
+            tabContainer.innerHTML = '';
+        
             topics.forEach((topic, index) => {
                 const button = document.createElement('button');
                 button.textContent = topic;
@@ -2537,36 +2536,29 @@
                 button.dataset.topic = topic;
                 button.addEventListener('click', () => switchTopic(topic));
                 tabContainer.appendChild(button);
-
-                // Automatically activate the first tab
+        
                 if (index === 0) {
                     currentTopic = topic;
                     button.classList.add('active');
                 }
             });
-
-            // Initialize the quiz with the first topic
-            // Ensure MathJax is ready before loading questions that might contain LaTeX
-            MathJax.Hub.Queue(function () {
-                loadQuestions(currentTopic);
-            });
+        
+            loadQuestions(currentTopic);
+            MathJax.typesetPromise();
         }
-
+        
         // Function to switch topic
         function switchTopic(topic) {
             currentTopic = topic;
             currentQuestionIndex = 0;
             score = 0;
-            answerSelectedForCurrentQuestion = false; // Reset flag for new topic
+            answerSelectedForCurrentQuestion = false;
             quizUI.classList.remove('hidden');
-            quizResults.classList.add('hidden'); // Hide results if switching topic
-            
-            // Ensure MathJax is ready before loading questions for the new topic
-            MathJax.Hub.Queue(function () {
-                loadQuestions(topic);
-            });
-
-            // Update active tab styling
+            quizResults.classList.add('hidden');
+        
+            loadQuestions(topic);
+            MathJax.typesetPromise();
+        
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.dataset.topic === topic) {
@@ -2574,14 +2566,14 @@
                 }
             });
         }
-
-        // Function to load questions for the current topic
+        
+        // Load questions for topic
         function loadQuestions(topic) {
             questions = allQuestions.filter(q => q.topic === topic);
             displayQuestion();
         }
-
-        // Function to display the current question
+        
+        // Display question
         function displayQuestion() {
             if (questions.length === 0) {
                 questionText.textContent = "No questions available for this topic.";
@@ -2590,111 +2582,91 @@
                 scoreDisplay.textContent = 'Score: N/A';
                 progressCounter.textContent = '0 / 0';
                 progressBar.style.width = '0%';
-                explanationTextDiv.style.display = 'none'; // Hide explanation
-                nextButton.classList.remove('enabled'); // Disable next button
-                nextButton.textContent = 'Next'; // Reset button text
+                explanationTextDiv.style.display = 'none';
+                nextButton.classList.remove('enabled');
+                nextButton.textContent = 'Next';
                 return;
             }
-
-            // Hide results if they were showing
+        
             quizResults.classList.add('hidden');
             quizUI.classList.remove('hidden');
-
+        
             const currentQ = questions[currentQuestionIndex];
-            // Use innerHTML for question text to allow MathJax to render LaTeX
             questionText.innerHTML = currentQ.question;
-            answerChoicesDiv.innerHTML = ''; // Clear previous choices
-            explanationTextDiv.style.display = 'none'; // Hide explanation for new question
-            nextButton.classList.remove('enabled'); // Disable next button initially
-            nextButton.textContent = 'Next'; // Reset button text
-
+            answerChoicesDiv.innerHTML = '';
+            explanationTextDiv.style.display = 'none';
+            nextButton.classList.remove('enabled');
+            nextButton.textContent = 'Next';
+        
             currentQ.choices.forEach((choice, index) => {
                 const div = document.createElement('div');
                 div.classList.add('answer-choice');
-
+        
                 const input = document.createElement('input');
                 input.type = 'radio';
                 input.id = `choice-${index}`;
                 input.name = 'answer';
                 input.value = index;
                 input.classList.add('w-5', 'h-5');
-                // Add event listener to each radio button
                 input.addEventListener('change', handleAnswerSelection);
-
-
+        
                 const label = document.createElement('label');
                 label.htmlFor = `choice-${index}`;
-                // Use innerHTML for choices to allow MathJax to render LaTeX
                 label.innerHTML = choice;
                 label.classList.add('text-lg', 'text-gray-800');
-
+        
                 div.appendChild(input);
                 div.appendChild(label);
                 answerChoicesDiv.appendChild(div);
             });
-
-            answerSelectedForCurrentQuestion = false; // Reset flag for the new question
+        
+            answerSelectedForCurrentQuestion = false;
             updateScoreAndProgress();
-            // Ensure MathJax processes the newly added question and choices
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "question-area"]);
+            MathJax.typesetPromise();
         }
-
-        // New function to handle answer selection
+        
+        // Handle answer selection
         function handleAnswerSelection(event) {
-            // Only proceed if an answer hasn't been selected for the current question
-            if (answerSelectedForCurrentQuestion) {
-                return;
-            }
-
-            answerSelectedForCurrentQuestion = true; // Set flag
+            if (answerSelectedForCurrentQuestion) return;
+        
+            answerSelectedForCurrentQuestion = true;
             const selectedChoice = event.target;
             const selectedAnswerIndex = parseInt(selectedChoice.value);
             const currentQ = questions[currentQuestionIndex];
-
-            // Disable all radio buttons after selection
+        
             document.querySelectorAll('input[name="answer"]').forEach(radio => {
                 radio.disabled = true;
             });
-
-            // Get all labels for styling
+        
             const allLabels = document.querySelectorAll('.answer-choice label');
-
-            // Apply styling based on correctness
+        
             allLabels.forEach((label, index) => {
                 if (index === currentQ.correctAnswerIndex) {
-                    // This is the correct answer
                     label.classList.add('correct');
-                    // If the user selected the correct answer
                     if (index === selectedAnswerIndex) {
-                        score++; // Increment score only when correct answer is selected
+                        score++;
                         label.classList.add('selected-correct');
                     }
                 } else if (index === selectedAnswerIndex) {
-                    // This is the user's incorrect answer
                     label.classList.add('incorrect', 'selected-incorrect');
                 }
             });
-
-            // Display explanation
-            explanationTextDiv.innerHTML = currentQ.explanation; // Use innerHTML for explanation
-            explanationTextDiv.style.display = 'block'; // Show explanation
-
-            // Enable the next button
+        
+            explanationTextDiv.innerHTML = currentQ.explanation;
+            explanationTextDiv.style.display = 'block';
             nextButton.classList.add('enabled');
-            updateScoreAndProgress(); // Update score display immediately after checking
-            // Ensure MathJax processes the newly added explanation
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "explanation-text"]);
+            updateScoreAndProgress();
+            MathJax.typesetPromise();
         }
-
-
-        // Function to update score and progress display
+        
+        // Update score and progress
         function updateScoreAndProgress() {
             scoreDisplay.textContent = `Score: ${score}`;
-            progressCounter.textContent = `${currentQuestionIndex + 1} / ${questions.length}`; // +1 for user-friendly count
+            progressCounter.textContent = `${currentQuestionIndex + 1} / ${questions.length}`;
             updateProgressBar();
         }
-
-        // Function to update the progress bar
+        
+        // Update progress bar
         function updateProgressBar() {
             if (questions.length === 0) {
                 progressBar.style.width = '0%';
@@ -2703,16 +2675,11 @@
             const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
             progressBar.style.width = `${progress}%`;
         }
-
-        // Function to move to the next question or finish the quiz
+        
+        // Next question or finish quiz
         function nextQuestion() {
-            // Ensure an answer was selected and processed for the current question
-            if (!answerSelectedForCurrentQuestion) {
-                // This scenario should ideally not happen if the button is disabled correctly
-                // but kept as a safeguard.
-                return;
-            }
-
+            if (!answerSelectedForCurrentQuestion) return;
+        
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
                 displayQuestion();
@@ -2720,16 +2687,16 @@
                 showResults();
             }
         }
-
-        // Function to show quiz results
+        
+        // Show final results
         function showResults() {
             quizUI.classList.add('hidden');
             quizResults.classList.remove('hidden');
             finalScoreDisplay.textContent = `You scored ${score} out of ${questions.length}.`;
-            updateProgressBar(); // Ensure progress bar is full at the end
+            updateProgressBar();
         }
-
-        // Function to restart the quiz for the current topic
+        
+        // Restart quiz
         function restartQuiz() {
             currentQuestionIndex = 0;
             score = 0;
@@ -2738,16 +2705,15 @@
             quizUI.classList.remove('hidden');
             displayQuestion();
         }
-
+        
         // Event listeners
         nextButton.addEventListener('click', nextQuestion);
         restartButton.addEventListener('click', restartQuiz);
-
-        // Initialize quiz on page load
+        
         document.addEventListener('DOMContentLoaded', () => {
             setupTabs();
-            // The first topic will be loaded by setupTabs() via MathJax.Hub.Queue
         });
+
 
     </script>
 </body>
