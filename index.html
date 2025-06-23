@@ -518,6 +518,246 @@
                 "explanation": "In a PID controller, the **derivative (D) component** is primarily responsible for **improving damping** and reducing overshoot in the system's response. The derivative term reacts to the *rate of change* of the error. If the error is changing rapidly (e.g., as the system approaches the setpoint quickly), the derivative term provides a strong opposing force, effectively acting as a 'brake.' This anticipatory action helps to slow down the system's approach to the setpoint, thereby reducing overshoot and making the response more stable and better damped."
               },
             {
+                "topic": "Quiz 5",
+                "question": "Which component combination forms the frequency-selective network in an RC oscillator?",
+                "choices": [
+                  "Inductor and capacitor",
+                  "Resistor and capacitor",
+                  "Resistor and inductor",
+                  "Transistor and capacitor"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "RC oscillators, as their name explicitly states, rely on **Resistor (R) and Capacitor (C)** components to create their frequency-selective network. This R-C network is crucial for providing the necessary phase shift (typically 180 degrees) and determining the specific frequency at which the circuit will oscillate. The time constant formed by the combination of R and C values directly dictates the oscillation frequency."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Why are three RC stages commonly used in a phase-shift oscillator?",
+                "choices": [
+                  "To provide 180∘ phase shift total in the feedback network",
+                  "To provide 360∘ phase shift total in the feedback network",
+                  "To provide 90∘ phase shift total",
+                  "To provide gain to the amplifier"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "A phase-shift oscillator requires a total phase shift of 360 degrees (or 0 degrees) around the entire feedback loop for sustained oscillation (Barkhausen criterion). Since the active amplifying component (like an op-amp or transistor) typically provides an initial 180-degree phase inversion, the **RC feedback network must provide the remaining 180 degrees** of phase shift. Each individual RC stage can provide a maximum of 90 degrees of phase shift, but usually operates around 60 degrees for practical purposes. Therefore, **three identical RC stages are cascaded** to sum up to the required 180-degree phase shift in the feedback loop."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "What happens to the frequency of oscillation if the resistor values in the RC network increase?",
+                "choices": [
+                  "Frequency increases",
+                  "Frequency decreases",
+                  "Frequency remains the same",
+                  "Oscillation stops"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "The frequency of oscillation in an RC oscillator is inversely proportional to the RC time constant (τ = RC). This means that as the product of R and C increases, the time it takes for the capacitor to charge and discharge increases, which in turn slows down the oscillation. Therefore, if the **resistor values (R) in the RC network increase**, the **frequency of oscillation will decrease**."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Why is an operational amplifier preferred over a transistor in RC oscillators?",
+                "choices": [
+                  "Lower power consumption",
+                  "Higher Input impedance and stable gain",
+                  "Easier to build",
+                  "Lower cost"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "Operational amplifiers (op-amps) are generally preferred over discrete transistors in many RC oscillator designs due to several key advantages. Their **very high input impedance** (ideally infinite) ensures that the RC frequency-determining network is not loaded down, allowing it to operate as intended without significant attenuation or unwanted frequency shifts. Additionally, op-amps provide **stable and predictable gain**, which is crucial for meeting the Barkhausen criterion for sustained oscillations without excessive amplitude clipping. This leads to more precise and reliable oscillator performance."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Which oscillator type is best suited for generating low-frequency sine waves with good amplitude stability?",
+                "choices": [
+                  "RC phase shift oscillator",
+                  "Hartley oscillator",
+                  "Crystal oscillator",
+                  "Colpitts oscillator"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "The **RC phase-shift oscillator** is particularly well-suited for generating **low-frequency sine waves** (typically from a few Hz up to hundreds of kHz). Its frequency is determined by resistors and capacitors, which are readily available in various values for low-frequency operation. With proper design and amplitude stabilization techniques (e.g., using a thermistor or active amplitude control), RC phase-shift oscillators can achieve **good amplitude stability** and produce relatively pure sinusoidal waveforms without excessive distortion."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Evaluate the impact of varying capacitor tolerances on the frequency stability of an RC oscillator.",
+                "choices": [
+                  "Minimal impact",
+                  "Large impact, causing frequency drift",
+                  "Only affects amplitude",
+                  "No effect if resistors are precise"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "The frequency of an RC oscillator is fundamentally determined by the time constant (RC) of its frequency-selective network. Therefore, any **variations in the component values**, especially the capacitors and resistors, will directly affect this time constant and thus the oscillation frequency. **Varying capacitor tolerances** mean that the actual capacitance can deviate from its nominal value, which will directly lead to **frequency drift** or instability in the oscillator's output. For precise frequency generation, components with tight tolerances are essential."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Which components form the frequency-selective tank circuit in LC oscillators?",
+                "choices": [
+                  "Resistor and capacitor",
+                  "Transistor and capacitor",
+                  "Resistor and inductor",
+                  "Inductor and capacitor"
+                ],
+                "correctAnswerIndex": 3,
+                "explanation": "LC oscillators, in contrast to RC oscillators, use a **tuned circuit** known as an **LC tank circuit** to determine their oscillation frequency. This tank circuit consists of an **Inductor (L) and a Capacitor (C)** connected in parallel or series. The natural resonant frequency of this LC combination is the primary factor dictating the oscillator's output frequency. Energy oscillates between the magnetic field of the inductor and the electric field of the capacitor, creating a sustained oscillation."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "In a Colpitts oscillator, the feedback is taken from:",
+                "choices": [
+                  "The inductor only",
+                  "The capacitor divider",
+                  "The resistor divider",
+                  "The transistor base"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "The **Colpitts oscillator** is a type of LC oscillator distinguished by its unique feedback mechanism. It uses a **tapped capacitor (or capacitor divider)** within the LC tank circuit. Specifically, two capacitors are connected in series across the inductor, and the feedback voltage is taken from the junction between these two capacitors. This capacitor divider network determines the feedback fraction and is crucial for meeting the oscillation conditions."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "If the loop gain of an LC oscillator is less than unity, what will happen?",
+                "choices": [
+                  "Oscillations will grow indefinitely",
+                  "Frequency will increase",
+                  "Oscillations will be stable",
+                  "Oscillations will decay and stop"
+                ],
+                "correctAnswerIndex": 3,
+                "explanation": "According to the **Barkhausen criterion** for sustained oscillations, two conditions must be met: 1) The total phase shift around the feedback loop must be 0 degrees (or a multiple of 360 degrees), and 2) The magnitude of the **loop gain (Aβ)** must be equal to or greater than unity (|Aβ| ≥ 1). If the **loop gain is less than unity (|Aβ| < 1)**, the signal fed back is too weak to sustain the oscillations, and consequently, the **oscillations will decay and eventually stop**."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "How does increasing the Q factor of the LC tank circuit affect the oscillator?",
+                "choices": [
+                  "Decreases frequency stability",
+                  "Increases frequency stability and reduces phase noise",
+                  "Increases power consumption",
+                  "Decreases output amplitude"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "The **Q factor (Quality factor)** of an LC tank circuit is a measure of its energy efficiency and selectivity. A **higher Q factor** indicates that the tank circuit has lower energy losses per cycle. In an oscillator, a higher Q tank circuit means it stores more energy relative to the energy dissipated. This directly leads to **increased frequency stability** (the oscillation frequency is less susceptible to variations) and **reduced phase noise** (less unwanted jitter or fluctuations in the phase of the output signal), resulting in a cleaner and more precise output waveform."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Which oscillator type is best suited for very high-frequency applications (GHz range)?",
+                "choices": [
+                  "Colpitts oscillator",
+                  "Wien bridge oscillator",
+                  "Crystal oscillator",
+                  "Hartley oscillator"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "Among the common oscillator types listed, the **Colpitts oscillator** is generally considered **best suited for very high-frequency applications, including the GHz range**. This is because its frequency-determining elements are capacitors and an inductor, which can be easily adapted to very high frequencies. Compared to Hartley oscillators, the Colpitts uses capacitive division for feedback, which can be more favorable at extremely high frequencies. While crystal oscillators offer excellent stability, their fundamental frequencies are typically in the MHz range, requiring frequency multipliers for GHz operation. Wien bridge oscillators are limited to lower frequencies (audio to low RF)."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "What is the primary energy storage element in Wien bridge oscillator?",
+                "choices": [
+                  "Inductor",
+                  "Capacitor and resistor network",
+                  "Crystal",
+                  "Transformer"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "The **Wien bridge oscillator** is a type of RC oscillator that uses a specific **feedback network consisting of resistors and capacitors (an RC network)** arranged in a bridge configuration, known as the Wien bridge. This network acts as both the frequency-determining element and the positive feedback path. The phase shift and frequency selectivity required for oscillation are derived from the resonant properties of this combined capacitor and resistor network, making it the primary energy storage and frequency-determining element."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Why is amplitude stabilization important in oscillator circuits?",
+                "choices": [
+                  "To prevent distortion and maintain steady output amplitude",
+                  "To increase frequency",
+                  "To reduce power consumption",
+                  "To increase phase shift"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "Amplitude stabilization is crucial in oscillator circuits for two main reasons. Firstly, it **prevents distortion** of the output waveform. If the loop gain is too high, the oscillations will grow unchecked, causing the active device (e.g., op-amp or transistor) to clip or saturate, leading to a distorted (non-sinusoidal) output. Secondly, it **maintains a steady and consistent output amplitude**. Without stabilization, the amplitude might fluctuate due to temperature changes, power supply variations, or component aging. Active amplitude stabilization techniques ensure that the oscillator produces a clean, stable sine wave with a predictable amplitude."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "What active component is commonly used in active filter design?",
+                "choices": [
+                  "Transistor",
+                  "Diode",
+                  "Op-amp",
+                  "Transformer"
+                ],
+                "correctAnswerIndex": 2,
+                "explanation": "**Operational amplifiers (op-amps)** are by far the most commonly used **active components in active filter design**. Their ideal characteristics, such as high input impedance, low output impedance, and the ability to provide stable and predictable gain, make them perfectly suited for constructing various filter topologies (low-pass, high-pass, band-pass, band-stop). The gain provided by the op-amp allows active filters to overcome insertion loss and offers greater flexibility in shaping the filter's frequency response."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Why are active filters preferred over passive filters in many applications?",
+                "choices": [
+                  "They require no power supply",
+                  "They can provide gain and better control of cutoff frequency",
+                  "They are simpler to design",
+                  "They use only resistors and capacitors"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "**Active filters** (which incorporate active components like op-amps) offer several significant advantages over passive filters (which use only resistors, capacitors, and inductors). A key advantage is that they **can provide gain**, meaning they can amplify the signal while filtering it, rather than causing signal attenuation (insertion loss). Furthermore, active filters offer **better control of filter characteristics**, such as a steeper roll-off (higher Q factor) and more precise adjustment of the cutoff frequency, without the need for large, bulky, and expensive inductors. While they do require a power supply, their performance benefits often outweigh this requirement."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "What determines the cutoff frequency in an active RC low-pass filter?",
+                "choices": [
+                  "Only resistor values",
+                  "Only capacitor values",
+                  "Both resistor and capacitor values",
+                  "Op-amp gain only"
+                ],
+                "correctAnswerIndex": 2,
+                "explanation": "In an active RC low-pass filter, similar to a passive RC low-pass filter, the **cutoff frequency (f_c)** is determined by the **combination of both the resistor (R) and capacitor (C) values** in the frequency-determining network. The formula for the cutoff frequency is typically $f_c = 1 / (2\pi RC)$ for a simple first-order filter. While the op-amp provides gain and isolation, the R and C components are fundamental to setting the frequency at which the filter begins to attenuate signals."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Why is simulation important in filter design?",
+                "choices": [
+                  "To predict frequency response and optimize parameters before hardware implementation",
+                  "To avoid building circuits",
+                  "To reduce component cost",
+                  "To increase power consumption"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "**Simulation** is an indispensable step in modern filter design. It allows engineers to **predict the frequency response** (how the filter will behave across different frequencies) and **optimize various design parameters** (like component values, gain, and Q factor) **before committing to physical hardware implementation**. This iterative process using software tools (like SPICE) helps in identifying potential issues, evaluating different design choices, and ensuring the filter meets specifications, thereby saving significant time, resources, and reducing the need for multiple physical prototypes."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "Which filter type is best suited for removing high-frequency noise while preserving low-frequency signals?",
+                "choices": [
+                  "High-pass filter",
+                  "Low-pass filter",
+                  "Band-pass filter",
+                  "Band-stop filter"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "A **low-pass filter** is specifically designed to allow signals with frequencies below a certain cutoff frequency to pass through with minimal attenuation, while significantly attenuating (blocking) signals with frequencies above that cutoff. This characteristic makes it **ideally suited for removing high-frequency noise** from a signal while **preserving the desired low-frequency signal components**."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "What is the cutoff frequency of a filter?",
+                "choices": [
+                  "The frequency where output power is maximum",
+                  "The frequency where output amplitude drops to 70.7% (-3 dB) of the passband level",
+                  "The frequency where input equals output",
+                  "The frequency where phase shift is 180∘"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "The **cutoff frequency (f_c)**, also known as the -3 dB frequency or half-power frequency, is a standard definition for characterizing filters. It is the frequency at which the **output power** of the filter has dropped to **half** of its maximum power in the passband. Equivalently, this corresponds to the point where the output **voltage amplitude** has dropped to **$1/\sqrt{2}$ (approximately 0.707 or 70.7%)** of its maximum passband amplitude. Beyond this frequency, the filter's attenuation becomes more significant."
+              },
+              {
+                "topic": "Quiz 5",
+                "question": "How does a band-stop (notch) filter behave?",
+                "choices": [
+                  "Passes all frequencies except a narrow band which it attenuates",
+                  "Passes only low frequencies",
+                  "Passes only high frequencies",
+                  "Passes all frequencies equally"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "A **band-stop filter**, often referred to as a **notch filter**, is designed to selectively **attenuate or reject a specific, narrow band of frequencies** while allowing all frequencies outside this band to pass through with minimal attenuation. This type of filter is commonly used to eliminate a particular unwanted frequency component (like a hum or interference) from a signal without significantly affecting the rest of the signal's frequency content."
+              },
+            {
                 topic: "Operational Amplifiers",
                 question: "What is an operational amplifier (op-amp) primarily described as?",
                 choices: [
